@@ -1,0 +1,48 @@
+.intro {
+  background-color: var(--color-background-darkgreen);
+  color: var(--color-text-white);
+}
+
+.intro__inner {
+  position: relative;
+  padding: 75px var(--content-sidepadding);
+  max-width: var(--content-maxwidth);
+  margin: 0 auto;
+}
+
+.intro__inner::before {
+  content: '';
+  display: block;
+  width: 310px;
+  height: 304px;
+  position: absolute;
+  right: 0;
+  top: 75px;
+  background: url(../../../images/intro-planet.svg) center / contain no-repeat;
+}
+
+.intro__title {
+  margin: 0;
+  max-width: 640px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  color: var(--color-text-white);
+}
+
+.intro__subtitle {
+  margin: 36px 0 0;
+  max-width: 310px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.23;
+  color: var(--color-text-white);
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+.intro__linkmore {
+  margin: 146px 0 0;
+}
