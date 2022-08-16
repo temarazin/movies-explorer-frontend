@@ -1,0 +1,29 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  opacity: 0.6;
+}
+
+.button_theme_main {
+  background: #3DDC84;
+  color: #000;
+}
+
+.button_theme_additional {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
