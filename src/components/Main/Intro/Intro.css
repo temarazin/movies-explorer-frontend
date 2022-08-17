@@ -16,7 +16,7 @@
   width: 310px;
   height: 304px;
   position: absolute;
-  right: 0;
+  right: 75px;
   top: 75px;
   background: url(../../../images/intro-planet.svg) center / contain no-repeat;
 }

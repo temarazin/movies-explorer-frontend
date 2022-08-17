@@ -1,0 +1,41 @@
+.stages {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0;
+}
+
+.stages__label {
+  display: block;
+  text-align: center;
+  height: 36px;
+  padding: 9px 14px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.stages__label_color_green {
+  background-color: #3ddc84;
+  color: var(--color-text-black);
+}
+
+.stages__label_color_dark {
+  background-color: #303030;
+  color: var(--color-text-white);
+}
+
+.stages__name {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  color: var(--color-text-grey);
+}

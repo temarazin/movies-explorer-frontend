@@ -2,9 +2,12 @@
   --content-maxwidth: 1140px;
   --content-sidepadding: 70px;
   --color-background-darkgreen: #073042;
-  --color-background-green: #3DDC84;
+  --color-background-green: #3ddc84;
+  --color-background-darkgrey: #202020;
+  --color-background-grey: #272727;
   --color-text-white: #fff;
   --color-text-black: #000;
+  --color-text-grey: #8b8b8b;
 }
 
 .root {

@@ -1,0 +1,40 @@
+.about {
+  background-color: var(--color-background-darkgrey);
+  color: var(--color-text-white);
+}
+
+.about__inner {
+  padding: 100px var(--content-sidepadding);
+  max-width: var(--content-maxwidth);
+  margin: 0 auto;
+}
+
+.about__description-wrapper {
+  margin: 70px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.about__description-title {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--color-text-white);
+}
+
+.about__description-text {
+  margin: 26px 0 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  color: var(--color-text-white);
+}
+
+.about__stages {
+  margin: 110px 0 0;
+}

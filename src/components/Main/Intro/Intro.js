@@ -1,4 +1,4 @@
-import Button from "../../Button/Button";
+import Button from "../../common/Button/Button";
 
 import './Intro.css';
 
