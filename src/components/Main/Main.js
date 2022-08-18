@@ -1,13 +1,15 @@
 import Intro from './Intro/Intro';
-import About from './About/About';
+import AboutProject from './About/AboutProject';
 import Techs from './Techs/Techs';
+import AboutMe from './AboutMe/AboutMe';
 
 function Main() {
   return (
     <main className="main">
       <Intro />
-      <About />
+      <AboutProject />
       <Techs />
+      <AboutMe />
     </main>
   );
 }

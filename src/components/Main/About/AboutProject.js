@@ -1,34 +1,34 @@
 import SectionTitle from "../../common/SectionTitle/SectionTitle";
 import Stages from "../Stages/Stages";
 
-import "./About.css";
+import "./AboutProject.css";
 
-function About() {
+function AboutProject() {
   return (
-    <section className="about">
-      <div className="about__inner">
+    <section className="about-project">
+      <div className="about-project__inner">
         <SectionTitle className="section-title">О проекте</SectionTitle>
-        <div className="about__description-wrapper">
-          <div className="about__description-item">
-            <h3 className="about__description-title">
+        <div className="about-project__description-wrapper">
+          <div className="about-project__description-item">
+            <h3 className="about-project__description-title">
               Дипломный проект включал 5 этапов
             </h3>
-            <p className="about__description-text">
+            <p className="about-project__description-text">
               Составление плана, работу над бэкендом, вёрстку, добавление
               функциональности и финальные доработки.
             </p>
           </div>
-          <div className="about__description-item">
-            <h3 className="about__description-title">
+          <div className="about-project__description-item">
+            <h3 className="about-project__description-title">
               На выполнение диплома ушло 5 недель
             </h3>
-            <p className="about__description-text">
+            <p className="about-project__description-text">
               У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
               соблюдать, чтобы успешно защититься.
             </p>
           </div>
         </div>
-        <Stages className="stages about__stages">
+        <Stages className="stages about-project__stages">
           <li className="stages__item" width="20%">
             <span className="stages__label stages__label_color_green">1 неделя</span>
             <p className="stages__name">Back-end</p>
@@ -43,4 +43,4 @@ function About() {
   );
 }
 
-export default About;
+export default AboutProject;
