@@ -1,3 +1,5 @@
+@import url(./vendor/fonts/inter.css);
+
 :root {
   --content-maxwidth: 1140px;
   --content-sidepadding: 70px;
