@@ -16,4 +16,17 @@
 .root {
   margin: 0;
   padding: 0;
+  min-width: 320px;
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    --content-sidepadding: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --content-sidepadding: 14px;
+  }
 }
