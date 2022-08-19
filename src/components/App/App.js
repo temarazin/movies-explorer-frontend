@@ -1,15 +1,18 @@
-import Header from '../Header/Header';
-import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
+import { Routes, Route } from "react-router-dom";
 
-import './App.css';
+import Main from "../Main/Main";
+import Movies from "../Movies/Movies";
+
+
+import "./App.css";
 
 function App() {
   return (
     <div className="page">
-      <Header />
-      <Main />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/movies" element={<Movies />} />
+      </Routes>
     </div>
   );
 }
