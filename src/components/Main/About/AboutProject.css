@@ -38,3 +38,32 @@
 .about-project__stages {
   margin: 110px 0 0;
 }
+
+@media screen and (max-width: 960px) {
+  .about-project__inner {
+    padding: 90px 50px;
+  }
+
+  .about-project__description-wrapper {
+    gap: 30px
+  }
+
+  .about-project__stages {
+    margin-top: 93px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-project__inner {
+    padding: 70px 18px;
+  }
+
+  .about-project__description-wrapper {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .about-project__description-text {
+    margin-top: 16px;
+  }
+}

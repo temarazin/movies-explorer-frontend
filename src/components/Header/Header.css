@@ -5,7 +5,7 @@
 
 .header__inner {
   max-width: 1140px;
-  padding: 18px 70px;
+  padding: 18px var(--content-sidepadding);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -6,7 +6,8 @@ function Stages(props) {
 
   children.forEach(item => {
     const { width } = item.props;
-    columns.push(width || '1fr');
+    let columnValue = width || '1fr';
+    columns.push(`minmax(100px, ${columnValue})`);
   });
 
   return (
