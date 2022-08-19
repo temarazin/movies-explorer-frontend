@@ -1,13 +1,14 @@
 import './Stages.css';
 
 function Stages(props) {
-  const { children, className } = props;
+  const { children, className, minWidth } = props;
+  const columnMinWidth = minWidth || '100px';
   let columns = [];
 
   children.forEach(item => {
     const { width } = item.props;
-    let columnValue = width || '1fr';
-    columns.push(`minmax(100px, ${columnValue})`);
+    let columnWidth = width || '1fr';
+    columns.push(`minmax(${columnMinWidth}, ${columnWidth})`);
   });
 
   return (
