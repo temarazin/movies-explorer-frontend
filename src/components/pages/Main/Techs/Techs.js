@@ -1,4 +1,4 @@
-import SectionTitle from "../../common/SectionTitle/SectionTitle";
+import SectionTitle from "../../../common/SectionTitle/SectionTitle";
 
 import "./Techs.css";
 

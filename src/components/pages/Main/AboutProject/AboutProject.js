@@ -1,5 +1,5 @@
-import SectionTitle from "../../common/SectionTitle/SectionTitle";
-import Stages from "../Stages/Stages";
+import SectionTitle from "../../../common/SectionTitle/SectionTitle";
+import Stages from "../../../common/Stages/Stages";
 
 import "./AboutProject.css";
 

@@ -1,7 +1,7 @@
-import SectionTitle from "../../common/SectionTitle/SectionTitle";
+import SectionTitle from "../../../common/SectionTitle/SectionTitle";
 
 import "./AboutMe.css";
-import fotoImage from "../../../images/foto.jpg";
+import fotoImage from "../../../../images/foto.jpg";
 
 function AboutMe() {
   return (

@@ -3,6 +3,10 @@
   color: #fff;
 }
 
+.header_theme_dark {
+  background-color: var(--color-background-darkgrey);
+}
+
 .header__inner {
   max-width: 1140px;
   padding: 18px var(--content-sidepadding);
@@ -12,8 +16,17 @@
   margin: 0 auto;
 }
 
+.header__column {
+  display: flex;
+  gap: 44px;
+}
+
 .header__account {
   display: flex;
   align-items: center;
   gap: 30px;
+}
+
+.header__logo {
+  display: block;
 }

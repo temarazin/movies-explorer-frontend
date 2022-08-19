@@ -18,7 +18,7 @@
   position: absolute;
   right: 75px;
   top: 75px;
-  background: url(../../../images/intro-planet.svg) center / contain no-repeat;
+  background: url(../../../../images/intro-planet.svg) center / contain no-repeat;
 }
 
 .intro__title {
