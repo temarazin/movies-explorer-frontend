@@ -8,12 +8,10 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="page">
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
       </Routes>
-    </div>
   );
 }
 
