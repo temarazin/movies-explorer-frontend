@@ -8,3 +8,9 @@
   letter-spacing: -0.04em;
   color: inherit;
 }
+
+@media screen and (max-width: 480px) {
+  .section-title {
+    font-size: 18px;
+  }
+}
