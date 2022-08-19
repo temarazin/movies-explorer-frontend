@@ -1,5 +1,3 @@
-import Button from "../../common/Button/Button";
-
 import './Intro.css';
 
 function Intro() {
@@ -12,7 +10,7 @@ function Intro() {
         <p className="intro__subtitle">
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
-        <Button className="button button_theme_more intro__linkmore">Узнать больше</Button>
+        <a href="#section-about-project" className="button button_theme_more intro__linkmore">Узнать больше</a>
       </div>
     </section>
   );

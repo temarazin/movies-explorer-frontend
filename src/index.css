@@ -13,6 +13,11 @@
   --color-text-grey: #8b8b8b;
 }
 
+.root-html {
+  scroll-behavior: smooth;
+}
+
+
 .root {
   margin: 0;
   padding: 0;
