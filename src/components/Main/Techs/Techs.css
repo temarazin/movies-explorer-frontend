@@ -89,6 +89,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .techs {
+    background-color: var(--color-background-darkgrey);
+  }
+
   .techs__inner {
     padding: 70px 18px;
   }
