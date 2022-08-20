@@ -1,6 +1,7 @@
 import Header from '../../Header/Header';
 import Content from '../../Content/Content';
 import Footer from "../../Footer/Footer";
+import SearchForm from '../../common/SearchForm/SearchForm';
 
 import './Movies.css';
 
@@ -11,7 +12,7 @@ function Movies(props) {
     <>
       <Header className="header header_theme_dark" loggedIn={loggedIn} />
       <Content>
-
+        <SearchForm />
       </Content>
       <Footer />
     </>

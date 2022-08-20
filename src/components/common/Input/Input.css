@@ -1,0 +1,21 @@
+.input {
+  box-sizing: border-box;
+  height: 48px;
+  background-color: #2f2f2f;
+  border: none;
+  border-radius: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  line-height: 1.21;
+  color: var(--color-text-white);
+}
+
+.input:focus {
+  outline: 1px solid #303030;
+}
+
+.input::placeholder {
+  color: var(--color-text-grey);
+}
