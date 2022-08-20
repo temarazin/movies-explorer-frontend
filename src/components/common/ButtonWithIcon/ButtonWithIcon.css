@@ -1,0 +1,39 @@
+.button-with-icon {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 36px 3px 11px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--color-text-white);
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.button-with-icon::after {
+  content: '';
+  display: flex;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  right: 3px;
+  top: calc(50% - 13px);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: var(--color-background-lightgrey);
+}
+
+.button-with-icon:hover {
+  opacity: 0.6;
+}
+
+.button-with-icon_icon_account::after {
+  background-image: url('../../../images/icon-account.svg');
+}

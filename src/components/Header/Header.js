@@ -4,11 +4,11 @@ import Button from "../common/Button/Button";
 import HeaderNav from "./HeaderNav/HeaderNav";
 
 import "./Header.css";
+import '../common/ButtonWithIcon/ButtonWithIcon.css';
 import logoImage from "../../images/logo.svg";
 
 function Header(props) {
   const { loggedIn = false } = props;
-
 
   const { className } = props;
   return (
@@ -18,15 +18,24 @@ function Header(props) {
           <Link to="/" className="header__logo-link">
             <img src={logoImage} alt="" className="header__logo" />
           </Link>
-          {loggedIn &&
-            <HeaderNav />
-          }
+          {loggedIn && <HeaderNav />}
         </div>
         <div className="header__account">
-          <Button className="button button_theme_additional">
-            Регистрация
-          </Button>
-          <Button className="button button_theme_main">Войти</Button>
+          {loggedIn ? (
+            <Link
+              to="/"
+              className="button-with-icon button-with-icon_icon_account"
+            >
+              Аккаунт
+            </Link>
+          ) : (
+            <>
+              <Button className="button button_theme_additional">
+                Регистрация
+              </Button>
+              <Button className="button button_theme_main">Войти</Button>
+            </>
+          )}
         </div>
       </div>
     </header>
