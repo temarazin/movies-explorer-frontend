@@ -44,3 +44,17 @@
   line-height: 1.21;
   color: var(--color-text-grey);
 }
+
+.movies-card__remove {
+  padding: 0;
+  border: none;
+  width: 16px;
+  height: 16px;
+  background: url(../../../images/icon-close-small.svg) center no-repeat;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.movies-card__remove:hover {
+  opacity: 0.6;
+}

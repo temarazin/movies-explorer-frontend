@@ -3,9 +3,9 @@ import Button from "../Button/Button";
 
 import "./MoviesCardList.css";
 
-function MoviesCardList() {
+function MoviesCardList({ isUserMovies = false }) {
   // temporary data
-  const cardsCount = 17;
+  const cardsCount = isUserMovies ? 3 : 17;
 
   return (
     <section className="movies-card-list">
@@ -13,7 +13,7 @@ function MoviesCardList() {
         <ul className="movies-card-list__cards">
           {Array.apply(null, Array(cardsCount)).map((item, i) => (
             <li className="movies-card-list__item">
-              <MoviesCard key={i} />
+              <MoviesCard key={i} onlyRemove={isUserMovies} />
             </li>
           ))}
         </ul>

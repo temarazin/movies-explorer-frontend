@@ -3,14 +3,16 @@ import CardLike from "./CardLike/CardLike";
 import "./MoviesCard.css";
 import cardCoverImage from "../../../images/card-example.jpg";
 
-function MoviesCard(props) {
+function MoviesCard({ isSaved = false, onlyRemove = false }) {
   const cardData = {
     duration: "1ч 32м",
     thumbnail: cardCoverImage,
     nameRU: "Криминальное чтиво",
   };
 
-  const { isSaved = false } = props;
+  const removeCard = (e) => {
+    e.target.closest('.movies-card-list__item').remove();
+  }
 
   return (
     <div className="movies-card">
@@ -25,7 +27,11 @@ function MoviesCard(props) {
           <p className="movies-card__duration">{cardData.duration}</p>
         </div>
         <div className="movies-card__controls">
-          <CardLike isActive={isSaved} />
+          {onlyRemove ? (
+            <button class="movies-card__remove" onClick={removeCard}></button>
+          ) : (
+            <CardLike isActive={isSaved} />
+          )}
         </div>
       </div>
     </div>
