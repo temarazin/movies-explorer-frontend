@@ -1,14 +1,20 @@
 import "./Button.css";
 
-function Button(props) {
-  const { children, className, link = false } = props;
+function Button({ children, className = "button", link = false, ...props }) {
 
   if (link) {
-    return <a href={link} className={className}>{children}</a>
+    return (
+      <a href={link} className={className} {...props}>
+        {children}
+      </a>
+    );
   } else {
-    return <button className={className}>{children}</button>
+    return (
+      <button className={className} {...props}>
+        {children}
+      </button>
+    );
   }
-
 }
 
 export default Button;

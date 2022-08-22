@@ -19,3 +19,17 @@
 .input::placeholder {
   color: var(--color-text-grey);
 }
+
+.input__label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input__text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.21;
+  color: var(--color-text-grey);
+}

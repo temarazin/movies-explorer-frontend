@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./ProfileData.css";
 
-function ProfileData() {
+function ProfileData({ onEditProfile }) {
   return (
     <div className="profile-data">
       <div className="profile-data__items">
@@ -17,7 +17,7 @@ function ProfileData() {
       </div>
       <ul className="profile-data__controls">
         <li className="profile-data__controls-item">
-          <button className="profile-data__controls-btn" type="button">Редактировать</button>
+          <button className="profile-data__controls-btn" type="button" onClick={onEditProfile}>Редактировать</button>
         </li>
         <li className="profile-data__controls-item">
           <Link to="/sign-in" className="profile-data__controls-signout">Выйти из аккаунта</Link>
