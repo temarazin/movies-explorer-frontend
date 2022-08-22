@@ -1,6 +1,8 @@
 .header-nav {
+  visibility: visible;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .header-nav__list {
@@ -9,6 +11,10 @@
   gap: 16px;
   padding: 0;
   margin: 0;
+}
+
+.header-nav__item_mobile-only {
+  display: none;
 }
 
 .header-nav__link {
@@ -23,4 +29,77 @@
 
 .header-nav__link:hover {
   opacity: 0.6;
+}
+
+.header-nav__account-link.button-with-icon {
+  display: none;
+}
+
+.header-nav__close {
+  display: none;
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  top: 30px;
+  right: 30px;
+  background: url('../../../images/icon-close.svg') center / contain no-repeat;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header-nav__close:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .header-nav {
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 520px;
+    max-width: 100%;
+    height: 100vh;
+    padding: 160px 90px 90px;
+    background-color: var(--color-background-darkgrey);
+    z-index: 1000;
+    transition: 0.5s;
+  }
+
+  .header-nav_opened {
+    visibility: visible;
+    right: 0;
+  }
+
+  .header-nav__list {
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: center;
+  }
+
+  .header-nav__item_mobile-only {
+    display: block;
+  }
+
+  .header-nav__account-link.button-with-icon {
+    display: flex;
+  }
+
+  .header-nav__close {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-nav {
+    padding: 144px 10px 46px;
+  }
+
+  .header-nav__close {
+    top: 20px;
+    right: 20px;
+  }
 }

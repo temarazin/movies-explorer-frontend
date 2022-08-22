@@ -30,3 +30,27 @@
 .header__logo {
   display: block;
 }
+
+.header__burger {
+  display: none;
+  width: 40px;
+  height: 43px;
+  background: url(../../images/icon-burger.svg) center / contain no-repeat;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.header__burger:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+  .header__account-link.button-with-icon {
+    display: none;
+  }
+
+  .header__burger {
+    display: block;
+  }
+}
