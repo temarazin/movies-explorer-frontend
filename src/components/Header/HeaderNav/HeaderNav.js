@@ -24,7 +24,7 @@ function HeaderNav({ isOpened, onCloseMenu }) {
         </li>
       </ul>
       <Link
-        to="/"
+        to="/profile"
         className="button-with-icon button-with-icon_icon_account header-nav__account-link"
       >
         Аккаунт

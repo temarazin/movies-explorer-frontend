@@ -34,7 +34,7 @@ function Header(props) {
           {loggedIn ? (
             <>
               <Link
-                to="/"
+                to="/profile"
                 className="button-with-icon button-with-icon_icon_account header__account-link"
               >
                 Аккаунт

@@ -1,3 +1,9 @@
 .content {
   flex-grow: 1;
 }
+
+.content_page_account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

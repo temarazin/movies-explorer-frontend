@@ -1,0 +1,68 @@
+.profile-data {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.21;
+  color: var(--color-text-white);
+}
+
+.profile-data__row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #424242;
+}
+
+.profile-data__row:last-child {
+  border-bottom: 0;
+}
+
+.profile-data__item-name {
+  flex: 0 0 141px;
+}
+
+.profile-data__controls {
+  margin: 220px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-data__controls-item {
+  text-align: center;
+}
+
+.profile-data__controls-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.21;
+  color: var(--color-text-white);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.profile-data__controls-btn:hover {
+  opacity: 0.6;
+}
+
+.profile-data__controls-signout {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.21;
+  color: var(--color-text-warning);
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.profile-data__controls-signout:hover {
+  opacity: 0.6;
+}

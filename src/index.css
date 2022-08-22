@@ -13,12 +13,12 @@
   --color-text-white: #fff;
   --color-text-black: #000;
   --color-text-grey: #8b8b8b;
+  --color-text-warning: #ee3465;
 }
 
 .root-html {
   scroll-behavior: smooth;
 }
-
 
 .root {
   margin: 0;
