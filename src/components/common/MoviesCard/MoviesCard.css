@@ -8,6 +8,7 @@
 .movies-card__cover {
   display: block;
   height: 151px;
+  width: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -15,11 +16,12 @@
 .movies-card__description {
   padding: 14px 12px;
   display: flex;
+  justify-content: space-between;
   gap: 12px;
 }
 
 .movies-card__text-description {
-  flex-grow: 1;
+  width: calc(100% - 28px);
 }
 
 .movies-card__name {
@@ -29,6 +31,9 @@
   font-size: 13px;
   line-height: 1.21;
   color: var(--color-text-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .movies-card__duration {

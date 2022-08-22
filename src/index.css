@@ -1,4 +1,5 @@
 @import url(./vendor/fonts/inter.css);
+@import url(./vendor/normalize.css);
 
 :root {
   --content-maxwidth: 1140px;
