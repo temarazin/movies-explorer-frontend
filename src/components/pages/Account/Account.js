@@ -18,7 +18,7 @@ function Account({ page, ...props }) {
 
   return (
     <>
-      <Header className="header header_theme_dark" loggedIn />
+      <Header className="header header_theme_dark" loggedIn={loggedIn} />
       <Content className="content content_page_account">
         <Component {...props} />
       </Content>

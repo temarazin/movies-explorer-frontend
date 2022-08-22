@@ -8,15 +8,26 @@ function ProfileForm({ oncloseProfileForm }) {
   return (
     <Form className="form profile-form" name="profile-form">
       <div className="form__row">
-        <Input type="text" label="Имя" />
+        <Input
+          type="text"
+          label="Имя"
+          placeholder="Введите имя"
+          required
+        />
       </div>
       <div className="form__row">
-        <Input type="email" label="E-mail" />
+        <Input
+          type="email"
+          label="E-mail"
+          placeholder="Введите почту"
+          required
+        />
       </div>
       <Button
         type="submit"
         className="button button_theme_submit profile-form__submit"
         onClick={oncloseProfileForm}
+        disabled
       >
         Сохранить
       </Button>
