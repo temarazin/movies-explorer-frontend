@@ -14,7 +14,8 @@ function App() {
       <Route path="/movies" element={<Movies loggedIn={true} />} />
       <Route path="/saved-movies" element={<SavedMovies loggedIn={true} />} />
       <Route path="/profile" element={<Account page="Profile" />} />
-      <Route path="/sign-in" element={<Account page="SignIn" />} />
+      <Route path="/sign-in" element={<Account page="Login" form="signin" />} />
+      <Route path="/sign-up" element={<Account page="Login" form="signup" />} />
     </Routes>
   );
 }

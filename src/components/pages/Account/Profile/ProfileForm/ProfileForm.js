@@ -27,7 +27,6 @@ function ProfileForm({ oncloseProfileForm }) {
         type="submit"
         className="button button_theme_submit profile-form__submit"
         onClick={oncloseProfileForm}
-        disabled
       >
         Сохранить
       </Button>

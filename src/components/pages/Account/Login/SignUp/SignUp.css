@@ -1,10 +1,10 @@
-.signin {
+.signup {
   width: 100%;
   max-width: 396px;
   padding: 50px var(--content-sidepadding);
 }
 
-.signin__header {
+.signup__header {
   margin: 40px 0 0;
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -13,20 +13,20 @@
   color: var(--color-text-white);
 }
 
-.signin__form {
+.signup__form {
   margin: 40px 0 0;
   min-height: 413px;
 }
 
-.signin__submit-wrapper {
+.signup__submit-wrapper {
   margin-top: auto;
 }
 
-.signin__submit {
+.signup__submit {
   width: 100%;
 }
 
-.signin__not-signup {
+.signup__already-signup {
   margin: 16px 0 0;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -36,6 +36,6 @@
   color: var(--color-text-grey);
 }
 
-.signin__not-signup-text {
+.signup__already-signup-text {
   margin-right: 6px;
 }

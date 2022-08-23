@@ -1,7 +1,7 @@
 import Header from "../../Header/Header";
 import Content from "../../Content/Content";
 import Profile from "./Profile/Profile";
-import SignIn from "./SignIn/SignIn";
+import Login from "./Login/Login";
 
 import "./Account.css";
 
@@ -13,8 +13,8 @@ function Account({ page, ...props }) {
       Component = Profile;
       showHeader = true;
       break;
-    case "SignIn":
-      Component = SignIn;
+    case "Login":
+      Component = Login;
       showHeader = false;
       break;
     default:
