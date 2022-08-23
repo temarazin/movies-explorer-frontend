@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import Button from "../common/Button/Button";
 import HeaderNav from "./HeaderNav/HeaderNav";
+import Logo from "../common/Logo/Logo";
 
 import "./Header.css";
 import '../common/ButtonWithIcon/ButtonWithIcon.css';
-import logoImage from "../../images/logo.svg";
+import '../common/Button/Button.css';
 
 function Header(props) {
   const { loggedIn = false } = props;
@@ -25,9 +25,7 @@ function Header(props) {
     <header className={className || "header"}>
       <div className="header__inner">
         <div className="header__column">
-          <Link to="/" className="header__logo-link">
-            <img src={logoImage} alt="" className="header__logo" />
-          </Link>
+          <Logo />
           {loggedIn && <HeaderNav isOpened={isMenuOpened} onCloseMenu={closeMenu} />}
         </div>
         <div className="header__account">
@@ -43,10 +41,10 @@ function Header(props) {
             </>
           ) : (
             <>
-              <Button className="button button_theme_additional">
+              <Link to="/sign-up" className="button button_theme_additional">
                 Регистрация
-              </Button>
-              <Button className="button button_theme_main">Войти</Button>
+              </Link>
+              <Link to="/sign-in" className="button button_theme_main">Войти</Link>
             </>
           )}
         </div>

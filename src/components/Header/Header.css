@@ -27,10 +27,6 @@
   gap: 30px;
 }
 
-.header__logo {
-  display: block;
-}
-
 .header__burger {
   display: none;
   width: 40px;
