@@ -28,7 +28,7 @@ function Account({ page, ...props }) {
         <Header className="header header_theme_dark" loggedIn={true} />
       )}
 
-      <Content className="content content_page_account">
+      <Content className="content content_page_blank">
         <Component {...props} />
       </Content>
     </>
