@@ -1,8 +1,8 @@
-import Logo from '../../../common/Logo/Logo';
-import SignIn from './SignIn/SignIn';
-import SignUp from './SignUp/SignUp';
+import Logo from "../../../common/Logo/Logo";
+import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
 
-import './Login.css';
+import "./Login.css";
 
 function Login({ form }) {
   let Component;
@@ -20,9 +20,9 @@ function Login({ form }) {
 
   return (
     <section className="login">
-        <Logo />
-        <h1 className="login__header">Добро пожаловать!</h1>
-        <Component />
+      <Logo className="logo login__logo" />
+      <h1 className="login__header">Добро пожаловать!</h1>
+      <Component />
     </section>
   );
 }

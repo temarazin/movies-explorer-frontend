@@ -13,10 +13,18 @@ function SavedMovies(props) {
   console.log(loggedIn);
   return (
     <>
-      <Header className="header header_theme_dark" loggedIn={loggedIn} />
+      <Header
+        className="header header_theme_dark"
+        loggedIn={loggedIn}
+        activeItem="savedMovies"
+      />
       <Content>
         <SearchForm />
-        {loadingMovies ? <Preloader /> : <MoviesCardList isUserMovies={true}></MoviesCardList>}
+        {loadingMovies ? (
+          <Preloader />
+        ) : (
+          <MoviesCardList isUserMovies={true}></MoviesCardList>
+        )}
       </Content>
       <Footer />
     </>

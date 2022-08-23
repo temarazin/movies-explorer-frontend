@@ -1,6 +1,7 @@
 .profile {
   max-width: 410px;
   width: 100%;
+  padding: 50px var(--content-sidepadding);
 }
 
 .profile__inner {

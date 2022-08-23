@@ -4,6 +4,11 @@
   padding: 50px var(--content-sidepadding);
 }
 
+.login__logo {
+  display: block;
+  width: fit-content;
+}
+
 .login__header {
   margin: 40px 0 0;
   font-family: "Inter", sans-serif;
@@ -11,4 +16,14 @@
   font-size: 24px;
   line-height: 1.21;
   color: var(--color-text-white);
+}
+
+@media screen and (max-width: 480px) {
+  .login__logo {
+    margin: 0 auto;
+  }
+
+  .login__header {
+    text-align: center;
+  }
 }

@@ -13,7 +13,11 @@ function Movies(props) {
   console.log(loggedIn);
   return (
     <>
-      <Header className="header header_theme_dark" loggedIn={loggedIn} />
+      <Header
+        className="header header_theme_dark"
+        loggedIn={loggedIn}
+        activeItem="movies"
+      />
       <Content>
         <SearchForm />
         {loadingMovies ? <Preloader /> : <MoviesCardList></MoviesCardList>}

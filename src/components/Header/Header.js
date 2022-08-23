@@ -8,8 +8,7 @@ import "./Header.css";
 import '../common/ButtonWithIcon/ButtonWithIcon.css';
 import '../common/Button/Button.css';
 
-function Header(props) {
-  const { loggedIn = false } = props;
+function Header({ loggedIn, className, activeItem }) {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const openMenu = () => {
@@ -20,13 +19,12 @@ function Header(props) {
     setIsMenuOpened(false);
   }
 
-  const { className } = props;
   return (
     <header className={className || "header"}>
       <div className="header__inner">
         <div className="header__column">
           <Logo />
-          {loggedIn && <HeaderNav isOpened={isMenuOpened} onCloseMenu={closeMenu} />}
+          {loggedIn && <HeaderNav isOpened={isMenuOpened} onCloseMenu={closeMenu} activeItem={activeItem} />}
         </div>
         <div className="header__account">
           {loggedIn ? (

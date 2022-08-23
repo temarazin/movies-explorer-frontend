@@ -1,3 +1,4 @@
+
 .signin__form {
   margin: 40px 0 0;
   min-height: 413px;
@@ -23,4 +24,11 @@
 
 .signin__not-signup-text {
   margin-right: 6px;
+}
+
+@media screen and (max-width: 480px) {
+  .signin__form {
+    margin-top: 80px;
+    min-height: 497px;
+  }
 }

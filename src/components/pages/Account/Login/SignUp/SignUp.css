@@ -39,3 +39,10 @@
 .signup__already-signup-text {
   margin-right: 6px;
 }
+
+@media screen and (max-width: 480px) {
+  .signup__form {
+    margin-top: 80px;
+    min-height: 497px;
+  }
+}

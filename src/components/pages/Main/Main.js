@@ -11,7 +11,7 @@ import './Main.css';
 function Main() {
   return (
     <>
-      <Header />
+      <Header activeItem="main" />
       <Content>
         <Intro />
         <AboutProject />
