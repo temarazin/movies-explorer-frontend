@@ -1,0 +1,16 @@
+.section-title {
+  padding-bottom: 23px;
+  border-bottom: 1px solid #dadada;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.23;
+  letter-spacing: -0.04em;
+  color: inherit;
+}
+
+@media screen and (max-width: 480px) {
+  .section-title {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,48 @@
+@import url(./vendor/fonts/inter.css);
+@import url(./vendor/normalize.css);
+
+:root {
+  --content-maxwidth: 1140px;
+  --content-sidepadding: 70px;
+  --color-background-darkgreen: #073042;
+  --color-background-green: #3ddc84;
+  --color-background-disabled: #a9a9a9;
+  --color-background-darkgrey: #202020;
+  --color-background-darkgrey-alt: #222;
+  --color-background-grey: #272727;
+  --color-background-lightgrey: #303030;
+  --color-text-white: #fff;
+  --color-text-black: #000;
+  --color-text-grey: #8b8b8b;
+  --color-text-warning: #ee3465;
+  --color-text-link: #4285F4;
+}
+
+.root-html {
+  scroll-behavior: smooth;
+}
+
+.root {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  background-color: var(--color-background-darkgrey);
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    --content-sidepadding: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --content-sidepadding: 14px;
+  }
+}

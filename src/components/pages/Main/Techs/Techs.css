@@ -1,0 +1,110 @@
+.techs {
+  background-color: var(--color-background-grey);
+  color: var(--color-text-white);
+}
+
+.techs__inner {
+  max-width: var(--content-maxwidth);
+  padding: 100px var(--content-sidepadding);
+  margin: 0 auto;
+}
+
+.techs__title {
+  margin: 90px auto 0;
+  max-width: 600px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--color-text-white);
+}
+
+.techs__subtitle {
+  margin: 26px auto 0;
+  max-width: 460px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--color-text-white);
+}
+
+.techs__list {
+  margin: 100px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, max-content));
+  justify-content: center;
+  gap: 10px;
+}
+
+.techs__list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 90px;
+  height: 60px;
+  padding: 10px;
+  background-color: var(--color-background-lightgrey);
+  border-radius: 10px;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 960px) {
+  .techs__inner {
+    padding: 90px 50px;
+  }
+
+  .techs__title {
+    margin-top: 80px;
+  }
+
+  .techs__subtitle {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .techs__list {
+    margin-top: 83px;
+    grid-template-columns: repeat(auto-fit, minmax(84px, max-content));
+  }
+
+  .techs__list-item {
+    min-width: 84px;
+    height: 57px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .techs {
+    background-color: var(--color-background-darkgrey);
+  }
+
+  .techs__inner {
+    padding: 70px 18px;
+  }
+
+  .techs__title {
+    margin-top: 60px;
+    font-size: 30px;
+  }
+
+  .techs__subtitle {
+    margin-top: 24px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+}

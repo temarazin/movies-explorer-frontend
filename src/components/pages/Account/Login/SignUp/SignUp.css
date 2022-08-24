@@ -1,0 +1,48 @@
+.signup {
+  width: 100%;
+  max-width: 396px;
+  padding: 50px var(--content-sidepadding);
+}
+
+.signup__header {
+  margin: 40px 0 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.21;
+  color: var(--color-text-white);
+}
+
+.signup__form {
+  margin: 40px 0 0;
+  min-height: 413px;
+}
+
+.signup__submit-wrapper {
+  margin-top: auto;
+}
+
+.signup__submit {
+  width: 100%;
+}
+
+.signup__already-signup {
+  margin: 16px 0 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  text-align: center;
+  color: var(--color-text-grey);
+}
+
+.signup__already-signup-text {
+  margin-right: 6px;
+}
+
+@media screen and (max-width: 480px) {
+  .signup__form {
+    margin-top: 80px;
+    min-height: 497px;
+  }
+}

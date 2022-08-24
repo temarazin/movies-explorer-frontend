@@ -1,0 +1,14 @@
+.simple-link {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  text-align: center;
+  color: var(--color-text-link);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.simple-link:hover {
+  opacity: 0.6;
+}

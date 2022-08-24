@@ -1,0 +1,50 @@
+.not-found {
+  width: fit-content;
+  text-align: center;
+}
+
+.not-found__error {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 1.21;
+  color: var(--color-text-white);
+}
+
+.not-found__error-name {
+  margin: 5px 0 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.21;
+  color: var(--color-text-white);
+}
+
+.not-found__backlink {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+@media screen and (max-width: 960px) {
+  .not-found__backlink {
+    bottom: 222px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .not-found__backlink {
+    bottom: 30px;
+  }
+
+  .not-found__error {
+    font-size: 80px;
+  }
+
+  .not-found__error-name {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}

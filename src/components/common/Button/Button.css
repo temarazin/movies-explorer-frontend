@@ -1,0 +1,50 @@
+.button {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.button:disabled {
+  pointer-events: none;
+  background-color: var(--color-background-disabled);
+  color: var(--color-text-grey);
+}
+
+.button:hover {
+  opacity: 0.6;
+}
+
+.button_theme_main {
+  background: var(--color-background-green);
+  color: var(--color-text-black);
+}
+
+.button_theme_additional {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.button_theme_more {
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--color-text-white);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+}
+
+.button_theme_submit {
+  background: #4285F4;
+  color: var(--color-text-white);
+}
