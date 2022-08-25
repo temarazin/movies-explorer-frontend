@@ -1,23 +1,32 @@
+import { useEffect, useState } from "react";
+
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Button from "../Button/Button";
+import { moviesApi } from "../../../utils/constants";
 
 import "./MoviesCardList.css";
 
 function MoviesCardList({ isUserMovies = false }) {
-  // temporary data
-  const cardsCount = isUserMovies ? 3 : 17;
+
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    moviesApi.getMovies().then((res) => setMovies(res));
+  }, []);
 
   return (
     <section className="movies-card-list">
       <div className="movies-card-list__inner">
         <ul className="movies-card-list__cards">
-          {Array.apply(null, Array(cardsCount)).map((item, i) => (
+          {movies.map((item) => (
             <li className="movies-card-list__item">
-              <MoviesCard key={i} onlyRemove={isUserMovies} />
+              <MoviesCard key={item.id} onlyRemove={isUserMovies} data={item} />
             </li>
           ))}
         </ul>
-        <Button className="button button_theme_more movies-card-list__linkmore">Еще</Button>
+        <Button className="button button_theme_more movies-card-list__linkmore">
+          Еще
+        </Button>
       </div>
     </section>
   );

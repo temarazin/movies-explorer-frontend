@@ -5,7 +5,7 @@ import "./HeaderNav.css";
 function HeaderNav({ isOpened, onCloseMenu, activeItem }) {
   return (
     <nav className={`header-nav${isOpened ? " header-nav_opened" : ""}`}>
-      <button class="header-nav__close" onClick={onCloseMenu}></button>
+      <button className="header-nav__close" onClick={onCloseMenu}></button>
       <ul className="header-nav__list">
         <li className="header-nav__item header-nav__item_mobile-only">
           <Link
