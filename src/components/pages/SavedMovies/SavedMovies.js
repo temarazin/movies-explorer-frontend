@@ -3,13 +3,11 @@ import Content from "../../Content/Content";
 import Footer from "../../Footer/Footer";
 import SearchForm from "../../common/SearchForm/SearchForm";
 import MoviesCardList from "../../common/MoviesCardList/MoviesCardList";
-import Preloader from "../../common/Preloader/Preloader";
 
 import "./SavedMovies.css";
 
 function SavedMovies(props) {
   const { loggedIn = false } = props;
-  let loadingMovies = false;
   console.log(loggedIn);
   return (
     <>
@@ -20,11 +18,7 @@ function SavedMovies(props) {
       />
       <Content>
         <SearchForm />
-        {loadingMovies ? (
-          <Preloader />
-        ) : (
-          <MoviesCardList isUserMovies={true}></MoviesCardList>
-        )}
+          <MoviesCardList isUserMovies={true} />
       </Content>
       <Footer />
     </>
