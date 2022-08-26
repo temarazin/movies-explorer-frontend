@@ -1,10 +1,9 @@
 import './Form.css';
 
-function Form(props) {
-  const { children, className = "form" } = props;
+function Form({children, className = 'form', ...props}) {
 
   return (
-    <form className={className}>
+    <form className={className} {...props}>
       {children}
     </form>
   )

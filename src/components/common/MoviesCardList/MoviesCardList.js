@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
-
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Button from "../Button/Button";
 import Preloader from "../Preloader/Preloader";
-import { moviesApi } from "../../../utils/constants";
 
 import "./MoviesCardList.css";
 
-function MoviesCardList({ isUserMovies = false }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    setIsLoading(true);
-    moviesApi.getMovies().then((res) => {
-      setIsLoading(false);
-      setMovies(res);
-    });
-  }, []);
+function MoviesCardList({ isUserMovies = false, films, isLoading }) {
 
   return (
     <section className="movies-card-list">
@@ -27,10 +14,9 @@ function MoviesCardList({ isUserMovies = false }) {
         ) : (
           <>
             <ul className="movies-card-list__cards">
-              {movies.map((item) => (
-                <li className="movies-card-list__item">
+              {films.map((item) => (
+                <li className="movies-card-list__item" key={item.id}>
                   <MoviesCard
-                    key={item.id}
                     onlyRemove={isUserMovies}
                     data={item}
                   />
