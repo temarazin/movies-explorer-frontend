@@ -28,7 +28,6 @@ function MoviesCardList({ isUserMovies = false, films, isLoading }) {
     if (filmsPerLoad !== 0) {
       setFilmsCount(Math.floor(filmsCount / filmsPerLoad) * filmsPerLoad + filmsPerLoad);
     }
-    console.log(filmsCount);
   }, [filmsPerLoad]);
 
   function handleMoreBtn() {
