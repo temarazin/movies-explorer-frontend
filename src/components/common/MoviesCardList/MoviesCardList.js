@@ -41,7 +41,7 @@ function MoviesCardList({ isUserMovies = false, films, isLoading }) {
           <Preloader />
         ) : (
           <>
-            {films.length === 0 && <p class="movies-card-list__no-results">Ничего не найдено</p>}
+            {films.length === 0 && <p className="movies-card-list__no-results">Ничего не найдено</p>}
             <ul className="movies-card-list__cards">
               {films.slice(0, filmsCount).map((item) => (
                 <li className="movies-card-list__item" key={item.id}>

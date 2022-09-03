@@ -1,0 +1,29 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.msg {
+  padding: 16px 8px;
+  background: rgba(255,255,255,0.5);
+  font-family: 'Inter', sans-serif;
+  border-left: 3px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0 3px 3px 0;
+  font-size: 12px;
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+}
+
+.msg_type_success {
+  background: rgb(98 255 87 / 50%);
+  color: var(--color-text-white);
+}
+
+.msg_type_error {
+  background: rgb(255 71 71 / 50%);
+  color: var(--color-text-white);
+}

@@ -4,7 +4,7 @@ import SignUp from "./SignUp/SignUp";
 
 import "./Login.css";
 
-function Login({ form }) {
+function Login({ form, ...props }) {
   let Component;
 
   switch (form) {
@@ -22,7 +22,7 @@ function Login({ form }) {
     <section className="login">
       <Logo className="logo login__logo" />
       <h1 className="login__header">Добро пожаловать!</h1>
-      <Component />
+      <Component {...props} />
     </section>
   );
 }
