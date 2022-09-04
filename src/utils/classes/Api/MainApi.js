@@ -4,6 +4,7 @@ export default class MainApi extends Api {
   signIn(data) {
     return fetch(this._baseUrl + "/signin", {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify(data),
     })
@@ -13,7 +14,6 @@ export default class MainApi extends Api {
   }
 
   signUp(data) {
-    console.log(data);
     return fetch(this._baseUrl + "/signup", {
       method: "POST",
       headers: this._headers,
@@ -23,5 +23,16 @@ export default class MainApi extends Api {
         return this._checkResponse(res);
       })
       .catch((e) => console.log(e));
+  }
+
+  getUser() {
+    return fetch(this._baseUrl + "/users/me", {
+      method: "GET",
+      headers: this._headers,
+      credentials: 'include',
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      })
   }
 }

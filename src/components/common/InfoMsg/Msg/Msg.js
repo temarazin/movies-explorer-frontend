@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import './Msg.css';
 
 function Msg({onRemove, item}) {

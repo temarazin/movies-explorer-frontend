@@ -1,6 +1,7 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 
+import ProtectedRoute from "../hoc/ProtectedRoute/ProtectedRoute";
 import Main from "../pages/Main/Main";
 import Movies from "../pages/Movies/Movies";
 import SavedMovies from "../pages/SavedMovies/SavedMovies";
@@ -17,30 +18,42 @@ import { mainApi } from "../../utils/constants";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [msgList, setMsgList] = useState([{ text: "Сообщение" }]);
+  const [msgList, setMsgList] = useState([]);
   const filmsDb = useRef([]);
 
-  // setMsgList([...msgList, ]);
-
   let navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (storage.getItem("films")) {
       filmsDb.current = storage.getItem("films");
     }
+
+    mainApi.getUser()
+      .then((data) => {
+        setCurrentUser(data);
+        setLoggedIn(true);
+        navigate(location.pathname);
+      })
+      .catch((e) => {
+        setCurrentUser({});
+      })
   }, []);
 
   const handleSignIn = ({ password, email }) => {
     mainApi
       .signIn({ password, email })
       .then((res) => {
-        console.log(res);
         setLoggedIn(true);
+        showMsg({text: res.message, type: 'success'});
+        return mainApi.getUser();
+      })
+      .then((user) => {
+        setCurrentUser(user);
         navigate("/movies");
       })
       .catch((e) => {
-        // console.log(e);
-        showMsg({ text: e, type: 'error' });
+        showMsg({ text: e, type: "error" });
       });
   };
 
@@ -67,15 +80,17 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route
-          path="/movies"
-          element={<Movies loggedIn={true} films={filmsDb} />}
-        />
-        <Route
-          path="/saved-movies"
-          element={<SavedMovies loggedIn={loggedIn} />}
-        />
-        <Route path="/profile" element={<Account page="Profile" />} />
+        <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+          <Route
+            path="/movies"
+            element={<Movies loggedIn={loggedIn} films={filmsDb} />}
+          />
+          <Route
+            path="/saved-movies"
+            element={<SavedMovies loggedIn={loggedIn} />}
+          />
+          <Route path="/profile" element={<Account page="Profile" />} />
+        </Route>
         <Route
           path="/sign-in"
           element={

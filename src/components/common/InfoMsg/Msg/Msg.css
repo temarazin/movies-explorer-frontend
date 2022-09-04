@@ -9,9 +9,9 @@
 
 .msg {
   padding: 16px 8px;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.9);
   font-family: 'Inter', sans-serif;
-  border-left: 3px solid rgba(0, 0, 0, 0.5);
+  border-left: 3px solid rgba(0, 0, 0, 0.3);
   border-radius: 0 3px 3px 0;
   font-size: 12px;
   cursor: pointer;
@@ -19,11 +19,11 @@
 }
 
 .msg_type_success {
-  background: rgb(98 255 87 / 50%);
+  background: rgb(17 167 6 / 90%);
   color: var(--color-text-white);
 }
 
 .msg_type_error {
-  background: rgb(255 71 71 / 50%);
+  background: rgb(255 71 71 / 90%);
   color: var(--color-text-white);
 }
