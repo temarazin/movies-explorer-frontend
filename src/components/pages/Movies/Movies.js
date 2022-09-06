@@ -14,7 +14,8 @@ function Movies({ loggedIn, films, onShowMsg }) {
   const [isLoading, setIsLoading] = useState(false);
   const [resultFilms, setResultFilms] = useState([]);
 
-  const handleSearchMovies = async (query) => {
+  const handleSearchMovies = async (params) => {
+    const { searchQuery, includeShorts } = params;
     setIsLoading(true);
 
     if (!films.current.length > 0) {
@@ -26,10 +27,18 @@ function Movies({ loggedIn, films, onShowMsg }) {
 
     setResultFilms([
       ...films.current.filter((item) => {
-        return item.nameRU.toLowerCase().includes(query.toLowerCase());
+        let result = false;
+        result = result || item.nameRU.toLowerCase().includes(searchQuery.toLowerCase());
+        result = result || item.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
+        if (!includeShorts) {
+          result = result && item.duration >= 40;
+        }
+        return result;
       }),
     ]);
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
@@ -40,7 +49,7 @@ function Movies({ loggedIn, films, onShowMsg }) {
         activeItem="movies"
       />
       <Content>
-        <SearchForm onSearch={handleSearchMovies} />
+        <SearchForm onSearch={handleSearchMovies} onShowMsg={onShowMsg} />
         <MoviesCardList films={resultFilms} isLoading={isLoading} onShowMsg={onShowMsg} />
       </Content>
       <Footer />
