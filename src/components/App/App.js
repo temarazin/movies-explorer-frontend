@@ -62,7 +62,7 @@ function App() {
     mainApi
       .signUp({ name, email, password })
       .then((res) => {
-        showMsg({ text: res.message, type: "success" });
+        showMsg({ text: 'Вы успешно зарегистрировались', type: "success" });
         navigate("/sign-in");
       })
       .catch((e) => {

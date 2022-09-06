@@ -1,27 +1,23 @@
-import { useState } from "react";
+import { useEffect } from "react";
 
 import Form from "../../../../common/Form/Form";
 import Input from "../../../../common/Input/Input";
 import Button from "../../../../common/Button/Button";
+import { useFormWithValidation } from "../../../../../utils/hooks/useFormWithValidation";
 
 import "./ProfileForm.css";
 
 function ProfileForm({ oncloseProfileForm, onUpdateProfile, user }) {
 
-  const [inputName, setInputName] = useState(user.name);
-  const [inputEmail, setInputEmail] = useState(user.email);
+  const formData = useFormWithValidation();
 
-  const changeName = (e) => {
-    setInputName(e.target.value);
-  }
-
-  const changeEmail = (e) => {
-    setInputEmail(e.target.value);
-  }
+  useEffect(() => {
+    formData.resetForm({name: user.name, email: user.email});
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateProfile({name: inputName, email: inputEmail});
+    onUpdateProfile(formData.values);
     oncloseProfileForm();
   }
 
@@ -29,28 +25,34 @@ function ProfileForm({ oncloseProfileForm, onUpdateProfile, user }) {
     <Form className="form profile-form" name="profile-form" onSubmit={handleSubmit}>
       <div className="form__row">
         <Input
+          name="name"
           type="text"
           label="Имя"
           placeholder="Введите имя"
-          value={inputName}
+          value={formData.values.name}
+          pattern="[А-ЯЁа-яё\w\s\-]{2,}"
+          onChange={formData.handleChange}
           required
-          onChange={changeName}
+          errors={formData.errors.name}
         />
       </div>
       <div className="form__row">
         <Input
+          name="email"
           type="email"
           label="E-mail"
           placeholder="Введите почту"
-          value={inputEmail}
+          value={formData.values.email}
+          pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
           required
-          onChange={changeEmail}
+          errors={formData.errors.email}
+          onChange={formData.handleChange}
         />
       </div>
       <Button
         type="submit"
         className="button button_theme_submit profile-form__submit"
-        // onClick={oncloseProfileForm}
+        disabled={!formData.isValid}
       >
         Сохранить
       </Button>

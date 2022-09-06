@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { useFormWithValidation } from "../../../../../utils/hooks/useFormWithValidation";
 import Form from "../../../../common/Form/Form";
 import Input from "../../../../common/Input/Input";
 import Button from "../../../../common/Button/Button";
@@ -8,20 +9,11 @@ import SimpleLink from "../../../../common/SimpleLink/SimpleLink";
 import "./SignIn.css";
 
 function SignIn({ onSignIn }) {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-
-  function handlePasswordInput(e) {
-    setPassword(e.target.value);
-  }
-
-  function handleEmailInput(e) {
-    setEmail(e.target.value);
-  }
+  const formData = useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSignIn({ password, email });
+    onSignIn(formData.values);
   }
 
   return (
@@ -32,28 +24,34 @@ function SignIn({ onSignIn }) {
     >
       <div className="form__row">
         <Input
+          name="email"
           type="email"
           label="E-mail"
           placeholder="Введите почту"
-          value={email}
+          value={formData.values.email}
+          pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
           required
-          onChange={handleEmailInput}
+          onChange={formData.handleChange}
+          errors={formData.errors.email}
         />
       </div>
       <div className="form__row">
         <Input
+          name="password"
           type="password"
           label="Пароль"
           placeholder="Введите пароль"
-          value={password}
+          value={formData.values.password}
           required
-          onChange={handlePasswordInput}
+          onChange={formData.handleChange}
+          errors={formData.errors.password}
         />
       </div>
       <div className="signin__submit-wrapper">
         <Button
           type="submit"
           className="button button_theme_submit signin__submit"
+          disabled={!formData.isValid}
         >
           Войти
         </Button>

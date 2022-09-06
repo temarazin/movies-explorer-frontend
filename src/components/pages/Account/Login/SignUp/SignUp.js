@@ -1,5 +1,4 @@
-import { useState } from "react";
-
+import { useFormWithValidation } from "../../../../../utils/hooks/useFormWithValidation";
 import Form from "../../../../common/Form/Form";
 import Input from "../../../../common/Input/Input";
 import Button from "../../../../common/Button/Button";
@@ -8,25 +7,11 @@ import SimpleLink from "../../../../common/SimpleLink/SimpleLink";
 import "./SignUp.css";
 
 function SignUp({ onSignUp }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function handleNameInput(e) {
-    setName(e.target.value);
-  }
-
-  function handleEmailInput(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePasswordInput(e) {
-    setPassword(e.target.value);
-  }
+  const formData = useFormWithValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSignUp({ name, email, password });
+    onSignUp(formData.values);
   }
 
   return (
@@ -37,38 +22,47 @@ function SignUp({ onSignUp }) {
     >
       <div className="form__row">
         <Input
+          name="name"
           type="text"
           label="Имя"
           placeholder="Введите имя"
-          value={name}
+          value={formData.values.name}
+          pattern="[А-ЯЁа-яё\w\s\-]{2,}"
           required
-          onChange={handleNameInput}
+          onChange={formData.handleChange}
+          errors={formData.errors.name}
         />
       </div>
       <div className="form__row">
         <Input
+          name="email"
           type="email"
           label="E-mail"
           placeholder="Введите почту"
-          value={email}
+          value={formData.values.email}
+          pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
           required
-          onChange={handleEmailInput}
+          onChange={formData.handleChange}
+          errors={formData.errors.email}
         />
       </div>
       <div className="form__row">
         <Input
+          name="password"
           type="password"
           label="Пароль"
           placeholder="Введите пароль"
-          value={password}
+          value={formData.values.password}
           required
-          onChange={handlePasswordInput}
+          onChange={formData.handleChange}
+          errors={formData.errors.password}
         />
       </div>
       <div className="signup__submit-wrapper">
         <Button
           type="submit"
           className="button button_theme_submit signup__submit"
+          disabled={!formData.isValid}
         >
           Регистрация
         </Button>
