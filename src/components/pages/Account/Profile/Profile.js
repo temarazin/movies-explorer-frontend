@@ -5,7 +5,7 @@ import ProfileForm from "./ProfileForm/ProfileForm";
 
 import "./Profile.css";
 
-function Profile() {
+function Profile({ ...props }) {
   const [isEditProfile, setIsEditProfile] = useState(false);
 
   const openProfileForm = () => {
@@ -21,7 +21,7 @@ function Profile() {
     <section className="profile">
       <div className="profile__content">
         <h1 className="profile__greetings">Привет, Виталий!</h1>
-        {isEditProfile ? <ProfileForm oncloseProfileForm={closeProfileForm} /> : <ProfileData onEditProfile={openProfileForm} />}
+        {isEditProfile ? <ProfileForm oncloseProfileForm={closeProfileForm} /> : <ProfileData onEditProfile={openProfileForm} onLogout={props.onLogout} />}
       </div>
     </section>
   );

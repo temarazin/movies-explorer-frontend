@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import Button from "../../../../common/Button/Button";
 
 import "./ProfileData.css";
 
-function ProfileData({ onEditProfile }) {
+function ProfileData({ onEditProfile, onLogout }) {
   return (
     <div className="profile-data">
       <div className="profile-data__items">
@@ -20,7 +20,7 @@ function ProfileData({ onEditProfile }) {
           <button className="profile-data__controls-btn" type="button" onClick={onEditProfile}>Редактировать</button>
         </li>
         <li className="profile-data__controls-item">
-          <Link to="/sign-in" className="profile-data__controls-signout">Выйти из аккаунта</Link>
+          <Button onClick={onLogout} className="profile-data__controls-signout">Выйти из аккаунта</Button>
         </li>
       </ul>
     </div>

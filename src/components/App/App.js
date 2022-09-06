@@ -29,7 +29,8 @@ function App() {
       filmsDb.current = storage.getItem("films");
     }
 
-    mainApi.getUser()
+    mainApi
+      .getUser()
       .then((data) => {
         setCurrentUser(data);
         setLoggedIn(true);
@@ -37,7 +38,7 @@ function App() {
       })
       .catch((e) => {
         setCurrentUser({});
-      })
+      });
   }, []);
 
   const handleSignIn = ({ password, email }) => {
@@ -45,7 +46,7 @@ function App() {
       .signIn({ password, email })
       .then((res) => {
         setLoggedIn(true);
-        showMsg({text: res.message, type: 'success'});
+        showMsg({ text: res.message, type: "success" });
         return mainApi.getUser();
       })
       .then((user) => {
@@ -61,10 +62,23 @@ function App() {
     mainApi
       .signUp({ name, email, password })
       .then((res) => {
+        showMsg({ text: res.message, type: "success" });
         navigate("/sign-in");
       })
       .catch((e) => {
-        console.log(e);
+        showMsg({ text: e, type: "error" });
+      });
+  };
+
+  const handleLogout = () => {
+    mainApi
+      .logout()
+      .then((res) => {
+        showMsg({ text: res.message, type: "success" });
+        setLoggedIn(false);
+      })
+      .catch((e) => {
+        showMsg({ text: e, type: "error" });
       });
   };
 
@@ -89,18 +103,28 @@ function App() {
             path="/saved-movies"
             element={<SavedMovies loggedIn={loggedIn} />}
           />
-          <Route path="/profile" element={<Account page="Profile" />} />
+          <Route path="/profile" element={<Account page="Profile" onLogout={handleLogout} />} />
         </Route>
         <Route
           path="/sign-in"
           element={
-            <Account page="Login" form="signin" onSignIn={handleSignIn} />
+            <Account
+              page="Login"
+              form="signin"
+              loggedIn={loggedIn}
+              onSignIn={handleSignIn}
+            />
           }
         />
         <Route
           path="/sign-up"
           element={
-            <Account page="Login" form="signup" onSignUp={handleSignUp} />
+            <Account
+              page="Login"
+              form="signup"
+              loggedIn={loggedIn}
+              onSignUp={handleSignUp}
+            />
           }
         />
         <Route path="/*" element={<NotFound />} />
