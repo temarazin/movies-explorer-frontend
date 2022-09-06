@@ -109,7 +109,7 @@ function App() {
         <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
           <Route
             path="/movies"
-            element={<Movies loggedIn={loggedIn} films={filmsDb} />}
+            element={<Movies loggedIn={loggedIn} films={filmsDb} onShowMsg={showMsg} />}
           />
           <Route
             path="/saved-movies"

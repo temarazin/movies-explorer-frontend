@@ -12,6 +12,8 @@ const moviesApi = new MoviesApi({
 });
 
 const imageBaseUrl = "https://api.nomoreparties.co";
+const noImageUrl = "https://picsum.photos/300/200/?blur=10"
+const noTrailerBaseUrl = "https://www.youtube.com/results?search_query=трейлер"
 
 const mainApiUrl = "https://api.movie-explorer.temarazin.ru";
 const localMainApiUrl = "http://localhost:3001"
@@ -25,4 +27,4 @@ const mainApi = new MainApi({
   headers: mainApiHeaders,
 })
 
-export { moviesApi, imageBaseUrl, mainApi };
+export { moviesApi, imageBaseUrl, mainApi, noImageUrl, noTrailerBaseUrl };

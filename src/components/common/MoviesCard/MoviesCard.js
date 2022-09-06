@@ -1,19 +1,27 @@
 import CardLike from "./CardLike/CardLike";
-import { imageBaseUrl } from "../../../utils/constants";
 
 import "./MoviesCard.css";
 
-function MoviesCard({ isSaved = false, onlyRemove = false, data }) {
+function MoviesCard({ savedMovie = undefined, onlyRemove = false, data, onLike, onDislike }) {
   const cardData = data;
 
   const removeCard = (e) => {
     e.target.closest('.movies-card-list__item').remove();
   }
 
+  const handleLikeClick = () => {
+    if (savedMovie) {
+      onDislike(savedMovie._id);
+    } else {
+      console.log('movieId', data.movieId);
+      onLike(data);
+    }
+  }
+
   return (
     <div className="movies-card">
       <img
-        src={imageBaseUrl + cardData?.image?.formats?.thumbnail?.url}
+        src={cardData?.thumbnail}
         alt={`Обложка фильма "${cardData?.nameRU}"`}
         className="movies-card__cover"
       />
@@ -26,7 +34,7 @@ function MoviesCard({ isSaved = false, onlyRemove = false, data }) {
           {onlyRemove ? (
             <button class="movies-card__remove" onClick={removeCard}></button>
           ) : (
-            <CardLike isActive={isSaved} />
+            <CardLike isActive={savedMovie ? true : false} handleClick={handleLikeClick} />
           )}
         </div>
       </div>

@@ -52,4 +52,35 @@ export default class MainApi extends Api {
       return this._checkResponse(res);
     });
   }
+
+  getMovies() {
+    return fetch(this._baseUrl + "/movies", {
+      method: "GET",
+      headers: this._headers,
+      credentials: "include",
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  }
+
+  addMovie(data) {
+    return fetch(this._baseUrl + "/movies", {
+      method: "POST",
+      headers: this._headers,
+      credentials: "include",
+      body: JSON.stringify(data),
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  }
+
+  deleteMovie(movieId) {
+    return fetch(`${this._baseUrl}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: this._headers,
+      credentials: "include",
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  }
 }

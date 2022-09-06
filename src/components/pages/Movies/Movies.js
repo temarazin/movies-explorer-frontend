@@ -8,9 +8,9 @@ import MoviesCardList from "../../common/MoviesCardList/MoviesCardList";
 import { moviesApi } from "../../../utils/constants";
 
 import "./Movies.css";
-import { storage } from "../../../utils/helper";
+import { storage, formatMovieData } from "../../../utils/helper";
 
-function Movies({ loggedIn, films }) {
+function Movies({ loggedIn, films, onShowMsg }) {
   const [isLoading, setIsLoading] = useState(false);
   const [resultFilms, setResultFilms] = useState([]);
 
@@ -19,8 +19,9 @@ function Movies({ loggedIn, films }) {
 
     if (!films.current.length > 0) {
       const getFilms = await moviesApi.getMovies();
-      films.current = getFilms;
-      storage.setItem("films", getFilms);
+      const formattedFilms = getFilms.map(formatMovieData);
+      films.current = formattedFilms;
+      storage.setItem("films", formattedFilms);
     }
 
     setResultFilms([
@@ -40,7 +41,7 @@ function Movies({ loggedIn, films }) {
       />
       <Content>
         <SearchForm onSearch={handleSearchMovies} />
-        <MoviesCardList films={resultFilms} isLoading={isLoading} />
+        <MoviesCardList films={resultFilms} isLoading={isLoading} onShowMsg={onShowMsg} />
       </Content>
       <Footer />
     </>
