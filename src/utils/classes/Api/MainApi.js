@@ -41,4 +41,15 @@ export default class MainApi extends Api {
       return this._checkResponse(res);
     });
   }
+
+  updateUser(data) {
+    return fetch(this._baseUrl + "/users/me", {
+      method: "PATCH",
+      headers: this._headers,
+      credentials: "include",
+      body: JSON.stringify(data),
+    }).then((res) => {
+      return this._checkResponse(res);
+    });
+  }
 }

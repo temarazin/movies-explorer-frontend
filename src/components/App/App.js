@@ -82,6 +82,18 @@ function App() {
       });
   };
 
+  const handleUpdateProfile = (data) => {
+    mainApi
+      .updateUser(data)
+      .then((user) => {
+        setCurrentUser(user);
+        showMsg({ text: 'Профиль обновлен', type: "success" });
+      })
+      .catch((e) => {
+        showMsg({ text: e, type: "error" });
+      });
+  }
+
   const showMsg = (item) => {
     setMsgList([item, ...msgList]);
   };
@@ -103,7 +115,7 @@ function App() {
             path="/saved-movies"
             element={<SavedMovies loggedIn={loggedIn} />}
           />
-          <Route path="/profile" element={<Account page="Profile" onLogout={handleLogout} />} />
+          <Route path="/profile" element={<Account page="Profile" onLogout={handleLogout} onUpdateProfile={handleUpdateProfile} />} />
         </Route>
         <Route
           path="/sign-in"
