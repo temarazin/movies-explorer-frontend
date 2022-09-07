@@ -41,8 +41,8 @@ function MoviesCardList({
   }, [windowWidth]);
 
   const handleMoreFilms = () => {
-      setFilmsCount(filmsCount + filmsPerLoad);
-  }
+    setFilmsCount(filmsCount + filmsPerLoad);
+  };
 
   return (
     <section className="movies-card-list">

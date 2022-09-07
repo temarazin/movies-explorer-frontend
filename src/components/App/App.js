@@ -19,39 +19,34 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [msgList, setMsgList] = useState([]);
-  const [filmsDb, setFilmsDb] = useState([]);
-  const [savedFilms, setSavedFilms] = useState([]);
+  const [filmsDb, setFilmsDb] = useState(storage.getItem("films") || []);
+  const [savedFilms, setSavedFilms] = useState(
+    storage.getItem("savedFilms") || []
+  );
 
   let navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (storage.getItem("films")) {
-      setFilmsDb(storage.getItem("films"));
-    }
-
-    if (storage.getItem("savedFilms")) {
-      setSavedFilms(storage.getItem("savedFilms"));
-    } else {
-      mainApi
-        .getMovies()
-        .then((data) => {
-          setSavedFilms(data);
-        })
-        .catch((e) => showMsg({ text: e, type: "error" }));
-    }
-
     mainApi
       .getUser()
       .then((data) => {
         setCurrentUser(data);
         setLoggedIn(true);
         navigate(location.pathname);
+        return mainApi.getMovies();
+      })
+      .then((data) => {
+        if (data) {
+          setSavedFilms(data);
+          storage.setItem("savedFilms", data);
+        }
       })
       .catch((e) => {
+        console.log(e);
         setCurrentUser({});
       });
-  }, []);
+  }, [loggedIn]);
 
   const handleSignIn = ({ password, email }) => {
     mainApi

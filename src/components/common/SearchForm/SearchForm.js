@@ -8,9 +8,13 @@ import { storage } from "../../../utils/helper";
 
 import "./SearchForm.css";
 
-function SearchForm({ onSearch, onShowMsg, restoreSearch = false }) {
-
-  const [searchQuery, setSearchQuery] = useState('');
+function SearchForm({
+  onSearch,
+  onShowMsg,
+  isSavedMoviesPage = false,
+  restoreSearch = false,
+}) {
+  const [searchQuery, setSearchQuery] = useState("");
   const [includeShorts, setIncludeShorts] = useState(false);
 
   function handleSearchChange(e) {
@@ -23,27 +27,26 @@ function SearchForm({ onSearch, onShowMsg, restoreSearch = false }) {
 
   function handleSubmit(e) {
     e?.preventDefault();
-    if (searchQuery.length > 0) {
-      onSearch({searchQuery, includeShorts});
+    if (searchQuery.length > 0 || isSavedMoviesPage) {
+      onSearch({ searchQuery, includeShorts });
     } else {
-      onShowMsg({text: 'Введите запрос', type: 'error'});
+      onShowMsg({ text: "Введите запрос", type: "error" });
     }
   }
 
   useEffect(() => {
     if (storage.getItem("searchParams") && restoreSearch) {
-      const {searchQuery = '', includeShorts = false} = storage.getItem("searchParams");
+      const { searchQuery = "", includeShorts = false } =
+        storage.getItem("searchParams");
       setSearchQuery(searchQuery);
       setIncludeShorts(includeShorts);
-      onSearch({searchQuery, includeShorts});
+      onSearch({ searchQuery, includeShorts });
     }
   }, []);
 
   useEffect(() => {
-    if (searchQuery.length > 0) {
-      handleSubmit();
-    }
-  }, [includeShorts])
+    handleSubmit();
+  }, [includeShorts]);
 
   return (
     <section className="search-form">

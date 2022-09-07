@@ -8,7 +8,7 @@ import MoviesCardList from "../../common/MoviesCardList/MoviesCardList";
 import { moviesApi } from "../../../utils/constants";
 
 import "./Movies.css";
-import { filterFilms, formatMovieData } from "../../../utils/helper";
+import { filterFilms, formatMovieData, storage } from "../../../utils/helper";
 
 function Movies({
   loggedIn,
@@ -33,6 +33,7 @@ function Movies({
       const getFilms = await moviesApi.getMovies();
       const formattedFilms = getFilms.map(formatMovieData);
       setFilmsDb(formattedFilms);
+      storage.setItem("films", formattedFilms);
       curFilmsDb = formattedFilms;
     } else {
       curFilmsDb = films;
@@ -58,7 +59,11 @@ function Movies({
         activeItem="movies"
       />
       <Content>
-        <SearchForm onSearch={handleSearchMovies} onShowMsg={onShowMsg} restoreSearch={true} />
+        <SearchForm
+          onSearch={handleSearchMovies}
+          onShowMsg={onShowMsg}
+          restoreSearch={true}
+        />
         <MoviesCardList
           films={resultFilms}
           savedFilms={savedFilms}

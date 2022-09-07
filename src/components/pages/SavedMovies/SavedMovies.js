@@ -37,7 +37,11 @@ function SavedMovies({ loggedIn, savedFilms, onRemoveFilm, onShowMsg }) {
         activeItem="savedMovies"
       />
       <Content>
-        <SearchForm onSearch={handleSearchMovies} onShowMsg={onShowMsg} />
+        <SearchForm
+          isSavedMoviesPage={true}
+          onSearch={handleSearchMovies}
+          onShowMsg={onShowMsg}
+        />
         <MoviesCardList
           isUserMovies={true}
           films={resultFilms}
