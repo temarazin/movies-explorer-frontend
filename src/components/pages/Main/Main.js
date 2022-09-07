@@ -8,10 +8,10 @@ import Footer from "../../Footer/Footer";
 
 import './Main.css';
 
-function Main() {
+function Main({ loggedIn }) {
   return (
     <>
-      <Header activeItem="main" />
+      <Header activeItem="main" loggedIn={loggedIn} />
       <Content>
         <Intro />
         <AboutProject />

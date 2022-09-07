@@ -87,6 +87,7 @@ function App() {
       .then((res) => {
         showMsg({ text: res.message, type: "success" });
         setLoggedIn(false);
+        navigate("/");
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
@@ -145,7 +146,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main loggedIn={loggedIn} />} />
         <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
           <Route
             path="/movies"

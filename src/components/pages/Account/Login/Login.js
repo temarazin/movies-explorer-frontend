@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 import Logo from "../../../common/Logo/Logo";
 import SignIn from "./SignIn/SignIn";
@@ -10,11 +9,9 @@ import "./Login.css";
 function Login({ form, loggedIn, ...props }) {
   let navigate = useNavigate();
 
-  useEffect(() => {
-    if (loggedIn) {
-      navigate("/movies", { replace: true });
-    }
-  }, [loggedIn])
+  if (loggedIn) {
+    navigate("/", { replace: true });
+  }
 
   let Component;
 
