@@ -1,3 +1,4 @@
+import { formatDuration } from "../../../utils/helper";
 import CardLike from "./CardLike/CardLike";
 
 import "./MoviesCard.css";
@@ -6,7 +7,10 @@ function MoviesCard({ savedMovie = undefined, onlyRemove = false, data, onLike, 
   const cardData = data;
 
   const removeCard = (e) => {
-    e.target.closest('.movies-card-list__item').remove();
+    onDislike(savedMovie._id)
+      .then(() => {
+        e.target.closest('.movies-card-list__item').remove();
+      });
   }
 
   const handleLikeClick = () => {
@@ -28,11 +32,11 @@ function MoviesCard({ savedMovie = undefined, onlyRemove = false, data, onLike, 
       <div className="movies-card__description">
         <div className="movies-card__text-description">
           <h3 className="movies-card__name">{cardData?.nameRU}</h3>
-          <p className="movies-card__duration">{cardData?.duration} м</p>
+          <p className="movies-card__duration">{formatDuration(cardData?.duration)}</p>
         </div>
         <div className="movies-card__controls">
           {onlyRemove ? (
-            <button class="movies-card__remove" onClick={removeCard}></button>
+            <button className="movies-card__remove" onClick={removeCard}></button>
           ) : (
             <CardLike isActive={savedMovie ? true : false} handleClick={handleLikeClick} />
           )}

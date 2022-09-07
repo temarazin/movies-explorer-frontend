@@ -6,11 +6,11 @@ const storage = {
   },
   setItem: (item, value) => {
     localStorage.setItem(item, JSON.stringify(value));
-  }
-}
+  },
+};
 
 const formatMovieData = (movie) => {
-  const noData = 'н/д';
+  const noData = "н/д";
   const formattedMovie = {
     country: movie.country || noData,
     director: movie.director || noData,
@@ -18,14 +18,35 @@ const formatMovieData = (movie) => {
     year: movie.year || noData,
     description: movie.description || noData,
     image: imageBaseUrl + movie.image.url || noImageUrl,
-    trailerLink: movie.trailerLink || `${noTrailerBaseUrl}+${movie.nameRU || movie.nameEN}`,
+    trailerLink:
+      movie.trailerLink ||
+      `${noTrailerBaseUrl}+${movie.nameRU || movie.nameEN}`,
     thumbnail: imageBaseUrl + movie.image.formats.thumbnail.url || noImageUrl,
     movieId: parseInt(movie.id),
     nameRU: movie.nameRU || movie.nameEN,
     nameEN: movie.nameEN || movie.nameRU,
-  }
+  };
 
   return formattedMovie;
-}
+};
 
-export {storage, formatMovieData};
+const formatDuration = (duration) => {
+  return duration >= 60
+    ? `${Math.floor(duration / 60)}ч ${duration % 60}м`
+    : `${duration % 60}м`;
+};
+
+const filterFilms = (item, params) => {
+  let result = false;
+  const { includeShorts, searchQuery } = params;
+  result =
+    result || item.nameRU.toLowerCase().includes(searchQuery.toLowerCase());
+  result =
+    result || item.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
+  if (includeShorts) {
+    result = result && item.duration <= 40;
+  }
+  return result;
+};
+
+export { storage, formatMovieData, formatDuration, filterFilms };

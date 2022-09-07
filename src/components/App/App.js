@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ProtectedRoute from "../hoc/ProtectedRoute/ProtectedRoute";
 import Main from "../pages/Main/Main";
@@ -19,14 +19,25 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [msgList, setMsgList] = useState([]);
-  const filmsDb = useRef([]);
+  const [filmsDb, setFilmsDb] = useState([]);
+  const [savedFilms, setSavedFilms] = useState([]);
 
   let navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     if (storage.getItem("films")) {
-      filmsDb.current = storage.getItem("films");
+      setFilmsDb(storage.getItem("films"));
+    }
+
+    if (storage.getItem("savedFilms")) {
+      setSavedFilms(storage.getItem("savedFilms"));
+    } else {
+      mainApi.getMovies()
+        .then((data) => {
+          setSavedFilms(data);
+        })
+        .catch((e) => showMsg({text: e, type: 'error'}))
     }
 
     mainApi
@@ -62,7 +73,7 @@ function App() {
     mainApi
       .signUp({ name, email, password })
       .then((res) => {
-        showMsg({ text: 'Вы успешно зарегистрировались', type: "success" });
+        showMsg({ text: "Вы успешно зарегистрировались", type: "success" });
         navigate("/sign-in");
       })
       .catch((e) => {
@@ -87,12 +98,12 @@ function App() {
       .updateUser(data)
       .then((user) => {
         setCurrentUser(user);
-        showMsg({ text: 'Профиль обновлен', type: "success" });
+        showMsg({ text: "Профиль обновлен", type: "success" });
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
       });
-  }
+  };
 
   const showMsg = (item) => {
     setMsgList([item, ...msgList]);
@@ -102,6 +113,31 @@ function App() {
     setMsgList(msgList.filter((item) => item.key !== key));
   };
 
+  const saveFilm = (movie) => {
+    mainApi
+      .addMovie(movie)
+      .then((data) => {
+        setSavedFilms([...savedFilms, data]);
+        storage.setItem('savedFilms', [...savedFilms, data])
+      })
+      .catch((e) => {
+        showMsg({ text: e, type: "error" });
+      });
+  }
+
+  const removeFilm = (movieId) => {
+    return mainApi
+      .deleteMovie(movieId)
+      .then(() => {
+        const res = savedFilms.filter((item) => item._id !== movieId)
+        setSavedFilms(res);
+        storage.setItem('savedFilms', res);
+      })
+      .catch((e) => {
+        showMsg({ text: e, type: "error" });
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
@@ -109,13 +145,40 @@ function App() {
         <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
           <Route
             path="/movies"
-            element={<Movies loggedIn={loggedIn} films={filmsDb} onShowMsg={showMsg} />}
+            element={
+              <Movies
+                loggedIn={loggedIn}
+                films={filmsDb}
+                savedFilms={savedFilms}
+                onSaveFilm={saveFilm}
+                onRemoveFilm={removeFilm}
+                onShowMsg={showMsg}
+                setFilmsDb={setFilmsDb}
+              />
+            }
           />
           <Route
             path="/saved-movies"
-            element={<SavedMovies loggedIn={loggedIn} />}
+            element={
+              <SavedMovies
+                films={filmsDb}
+                savedFilms={savedFilms}
+                onRemoveFilm={removeFilm}
+                onShowMsg={showMsg}
+                loggedIn={loggedIn}
+              />
+            }
           />
-          <Route path="/profile" element={<Account page="Profile" onLogout={handleLogout} onUpdateProfile={handleUpdateProfile} />} />
+          <Route
+            path="/profile"
+            element={
+              <Account
+                page="Profile"
+                onLogout={handleLogout}
+                onUpdateProfile={handleUpdateProfile}
+              />
+            }
+          />
         </Route>
         <Route
           path="/sign-in"

@@ -8,34 +8,42 @@ import MoviesCardList from "../../common/MoviesCardList/MoviesCardList";
 import { moviesApi } from "../../../utils/constants";
 
 import "./Movies.css";
-import { storage, formatMovieData } from "../../../utils/helper";
+import { filterFilms, formatMovieData } from "../../../utils/helper";
 
-function Movies({ loggedIn, films, onShowMsg }) {
+function Movies({
+  loggedIn,
+  films,
+  savedFilms,
+  onSaveFilm,
+  onRemoveFilm,
+  onShowMsg,
+  setFilmsDb,
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const [resultFilms, setResultFilms] = useState([]);
+  const [noResult, setNoResult] = useState(false);
 
   const handleSearchMovies = async (params) => {
-    const { searchQuery, includeShorts } = params;
     setIsLoading(true);
 
-    if (!films.current.length > 0) {
+    let curFilmsDb;
+
+    if (!films.length > 0) {
       const getFilms = await moviesApi.getMovies();
       const formattedFilms = getFilms.map(formatMovieData);
-      films.current = formattedFilms;
-      storage.setItem("films", formattedFilms);
+      setFilmsDb(formattedFilms);
+      curFilmsDb = formattedFilms;
+    } else {
+      curFilmsDb = films;
     }
 
-    setResultFilms([
-      ...films.current.filter((item) => {
-        let result = false;
-        result = result || item.nameRU.toLowerCase().includes(searchQuery.toLowerCase());
-        result = result || item.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
-        if (!includeShorts) {
-          result = result && item.duration >= 40;
-        }
-        return result;
-      }),
-    ]);
+    const result = curFilmsDb.filter((item) => {
+      return filterFilms(item, params);
+    });
+
+    setResultFilms(result);
+    setNoResult(result.length === 0);
+
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -50,7 +58,15 @@ function Movies({ loggedIn, films, onShowMsg }) {
       />
       <Content>
         <SearchForm onSearch={handleSearchMovies} onShowMsg={onShowMsg} />
-        <MoviesCardList films={resultFilms} isLoading={isLoading} onShowMsg={onShowMsg} />
+        <MoviesCardList
+          films={resultFilms}
+          savedFilms={savedFilms}
+          isLoading={isLoading}
+          isNoResult={noResult}
+          onShowMsg={onShowMsg}
+          onSaveFilm={onSaveFilm}
+          onRemoveFilm={onRemoveFilm}
+        />
       </Content>
       <Footer />
     </>
