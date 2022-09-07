@@ -25,7 +25,7 @@ function Movies({
   const [outputFilms, setOutputFilms] = useState([]);
   const [noResult, setNoResult] = useState(false);
   const [includeShorts, setIncludeShorts] = useState(
-    storage.getItem("searchParams").includeShorts || false
+    storage.getItem("searchParams")?.includeShorts || false
   );
 
   const handleSearchMovies = async (params) => {

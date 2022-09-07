@@ -46,7 +46,7 @@ function App() {
         console.log(e);
         setCurrentUser({});
       });
-  }, [loggedIn]);
+  }, []);
 
   const handleSignIn = ({ password, email }) => {
     mainApi
@@ -83,6 +83,7 @@ function App() {
       .then((res) => {
         showMsg({ text: res.message, type: "success" });
         setLoggedIn(false);
+        setCurrentUser({});
         navigate("/");
       })
       .catch((e) => {

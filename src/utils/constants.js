@@ -23,7 +23,7 @@ const mainApiHeaders = {
 };
 
 const mainApi = new MainApi({
-  baseUrl: localMainApiUrl,
+  baseUrl: mainApiUrl,
   headers: mainApiHeaders,
 });
 

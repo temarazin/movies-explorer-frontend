@@ -24,16 +24,7 @@ function SearchForm({
 
   function handleIncludeShortsChange(e) {
     setIncludeShorts(e.target.checked);
-    const localParams = storage.getItem("searchParams");
-    if (localParams) {
-      localParams.includeShorts = e.target.checked;
-      storage.setItem("searchParams", localParams);
-    } else {
-      storage.setItem("searchParams", {
-        includeShorts: e.target.checked,
-        querySearch: "",
-      });
-    }
+    storage.setItem("searchParams", {includeShorts: e.target.checked, searchQuery});
   }
 
   function handleSubmit(e) {
