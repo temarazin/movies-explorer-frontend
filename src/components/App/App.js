@@ -33,11 +33,12 @@ function App() {
     if (storage.getItem("savedFilms")) {
       setSavedFilms(storage.getItem("savedFilms"));
     } else {
-      mainApi.getMovies()
+      mainApi
+        .getMovies()
         .then((data) => {
           setSavedFilms(data);
         })
-        .catch((e) => showMsg({text: e, type: 'error'}))
+        .catch((e) => showMsg({ text: e, type: "error" }));
     }
 
     mainApi
@@ -72,7 +73,7 @@ function App() {
   const handleSignUp = ({ name, email, password }) => {
     mainApi
       .signUp({ name, email, password })
-      .then((res) => {
+      .then(() => {
         showMsg({ text: "Вы успешно зарегистрировались", type: "success" });
         navigate("/sign-in");
       })
@@ -95,7 +96,7 @@ function App() {
   };
 
   const handleUpdateProfile = (data) => {
-    mainApi
+    return mainApi
       .updateUser(data)
       .then((user) => {
         setCurrentUser(user);
@@ -103,15 +104,17 @@ function App() {
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
+        return Promise.reject();
       });
   };
 
   const showMsg = (item) => {
-    setMsgList([item, ...msgList]);
+    item.key = Date.now();
+    setMsgList([...msgList, item]);
   };
 
   const removeMsg = (key) => {
-    setMsgList(msgList.filter((item) => item.key !== key));
+    setMsgList((state) => state.filter((item) => item.key !== key));
   };
 
   const saveFilm = (movie) => {
@@ -119,29 +122,29 @@ function App() {
       .addMovie(movie)
       .then((data) => {
         setSavedFilms([...savedFilms, data]);
-        storage.setItem('savedFilms', [...savedFilms, data])
+        storage.setItem("savedFilms", [...savedFilms, data]);
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
       });
-  }
+  };
 
   const removeFilm = (movieId) => {
     return mainApi
       .deleteMovie(movieId)
       .then(() => {
-        const res = savedFilms.filter((item) => item._id !== movieId)
+        const res = savedFilms.filter((item) => item._id !== movieId);
         setSavedFilms(res);
-        storage.setItem('savedFilms', res);
+        storage.setItem("savedFilms", res);
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
       });
-  }
+  };
 
   const setSearchParams = (params) => {
     storage.setItem("searchParams", params);
-  }
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -212,8 +215,7 @@ function App() {
       </Routes>
       {msgList.length > 0 && (
         <InfoMsg>
-          {msgList.map((item, i) => {
-            item.key = i;
+          {msgList.map((item) => {
             return <Msg key={item.key} item={item} onRemove={removeMsg} />;
           })}
         </InfoMsg>

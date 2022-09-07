@@ -1,7 +1,16 @@
+import { useEffect } from 'react';
 import './Msg.css';
 
+
 function Msg({onRemove, item}) {
-  function handleClick(e) {
+
+  useEffect(() => {
+    setTimeout(() => {
+      onRemove(item.key);
+    }, 5000)
+  }, [item]);
+
+  function handleClick() {
     onRemove(item.key);
   }
 

@@ -1,13 +1,25 @@
-@keyframes fadeIn {
+@keyframes msg {
   0% {
-    opacity: 0
+    opacity: 0;
+    right: -100%;
+  }
+  10% {
+    opacity: 1;
+    right: 0;
+  }
+  90% {
+    opacity: 1;
+    right: 0;
   }
   100% {
-    opacity: 1;
+    opacity: 0;
+    right: -100%;
+    display: none;
   }
 }
 
 .msg {
+  position: relative;
   padding: 16px 8px;
   background: rgba(255,255,255,0.9);
   font-family: 'Inter', sans-serif;
@@ -15,7 +27,7 @@
   border-radius: 0 3px 3px 0;
   font-size: 12px;
   cursor: pointer;
-  animation: fadeIn 0.3s;
+  animation: msg 4.5s forwards;
 }
 
 .msg_type_success {

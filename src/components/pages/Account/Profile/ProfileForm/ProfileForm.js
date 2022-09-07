@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Form from "../../../../common/Form/Form";
 import Input from "../../../../common/Input/Input";
@@ -10,15 +10,23 @@ import "./ProfileForm.css";
 function ProfileForm({ oncloseProfileForm, onUpdateProfile, user }) {
 
   const formData = useFormWithValidation();
+  const [isNoChanges, setIsNoChanges] = useState(false);
 
   useEffect(() => {
     formData.resetForm({name: user.name, email: user.email});
   }, []);
 
+  useEffect(() => {
+    const {name, email} = formData.values;
+    setIsNoChanges(name === user.name && email === user.email);
+  }, [formData, user]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateProfile(formData.values);
-    oncloseProfileForm();
+    onUpdateProfile(formData.values)
+      .then((res) => {
+        oncloseProfileForm();
+      })
   }
 
   return (
@@ -52,7 +60,7 @@ function ProfileForm({ oncloseProfileForm, onUpdateProfile, user }) {
       <Button
         type="submit"
         className="button button_theme_submit profile-form__submit"
-        disabled={!formData.isValid}
+        disabled={!formData.isValid || isNoChanges}
       >
         Сохранить
       </Button>

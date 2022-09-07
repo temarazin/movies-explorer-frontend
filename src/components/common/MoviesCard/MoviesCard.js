@@ -17,7 +17,6 @@ function MoviesCard({ savedMovie = undefined, onlyRemove = false, data, onLike, 
     if (savedMovie) {
       onDislike(savedMovie._id);
     } else {
-      console.log('movieId', data.movieId);
       onLike(data);
     }
   }
