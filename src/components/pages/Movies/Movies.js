@@ -18,6 +18,7 @@ function Movies({
   onRemoveFilm,
   onShowMsg,
   setFilmsDb,
+  setSearchParams,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [resultFilms, setResultFilms] = useState([]);
@@ -43,7 +44,7 @@ function Movies({
 
     setResultFilms(result);
     setNoResult(result.length === 0);
-
+    setSearchParams(params);
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -57,7 +58,7 @@ function Movies({
         activeItem="movies"
       />
       <Content>
-        <SearchForm onSearch={handleSearchMovies} onShowMsg={onShowMsg} />
+        <SearchForm onSearch={handleSearchMovies} onShowMsg={onShowMsg} restoreSearch={true} />
         <MoviesCardList
           films={resultFilms}
           savedFilms={savedFilms}

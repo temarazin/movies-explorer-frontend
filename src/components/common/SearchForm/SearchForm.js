@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Form from "../Form/Form";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
+import { storage } from "../../../utils/helper";
 
 import "./SearchForm.css";
-import { useEffect } from "react";
 
-function SearchForm({ onSearch, onShowMsg }) {
+function SearchForm({ onSearch, onShowMsg, restoreSearch = false }) {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [includeShorts, setIncludeShorts] = useState(false);
@@ -29,6 +29,15 @@ function SearchForm({ onSearch, onShowMsg }) {
       onShowMsg({text: 'Введите запрос', type: 'error'});
     }
   }
+
+  useEffect(() => {
+    if (storage.getItem("searchParams") && restoreSearch) {
+      const {searchQuery = '', includeShorts = false} = storage.getItem("searchParams");
+      setSearchQuery(searchQuery);
+      setIncludeShorts(includeShorts);
+      onSearch({searchQuery, includeShorts});
+    }
+  }, []);
 
   useEffect(() => {
     if (searchQuery.length > 0) {
@@ -61,6 +70,7 @@ function SearchForm({ onSearch, onShowMsg }) {
               className="checkbox checkbox_theme_toggler search-form__checkbox"
               name="includeShortMovies"
               onChange={handleIncludeShortsChange}
+              checked={includeShorts}
             >
               Короткометражки
             </Checkbox>

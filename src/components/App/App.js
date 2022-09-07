@@ -138,6 +138,10 @@ function App() {
       });
   }
 
+  const setSearchParams = (params) => {
+    storage.setItem("searchParams", params);
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
@@ -154,6 +158,7 @@ function App() {
                 onRemoveFilm={removeFilm}
                 onShowMsg={showMsg}
                 setFilmsDb={setFilmsDb}
+                setSearchParams={setSearchParams}
               />
             }
           />
