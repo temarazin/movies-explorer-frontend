@@ -7,6 +7,9 @@ const storage = {
   setItem: (item, value) => {
     localStorage.setItem(item, JSON.stringify(value));
   },
+  clear: () => {
+    localStorage.clear();
+  },
 };
 
 const formatMovieData = (movie) => {

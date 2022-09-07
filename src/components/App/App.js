@@ -70,7 +70,7 @@ function App() {
       .signUp({ name, email, password })
       .then(() => {
         showMsg({ text: "Вы успешно зарегистрировались", type: "success" });
-        navigate("/sign-in");
+        handleSignIn({email, password});
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
@@ -84,6 +84,7 @@ function App() {
         showMsg({ text: res.message, type: "success" });
         setLoggedIn(false);
         setCurrentUser({});
+        storage.clear();
         navigate("/");
       })
       .catch((e) => {
