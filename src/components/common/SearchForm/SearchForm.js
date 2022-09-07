@@ -11,11 +11,12 @@ import "./SearchForm.css";
 function SearchForm({
   onSearch,
   onShowMsg,
+  includeShorts,
+  setIncludeShorts,
   isSavedMoviesPage = false,
   restoreSearch = false,
 }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [includeShorts, setIncludeShorts] = useState(false);
 
   function handleSearchChange(e) {
     setSearchQuery(e.target.value);
@@ -23,6 +24,16 @@ function SearchForm({
 
   function handleIncludeShortsChange(e) {
     setIncludeShorts(e.target.checked);
+    const localParams = storage.getItem("searchParams");
+    if (localParams) {
+      localParams.includeShorts = e.target.checked;
+      storage.setItem("searchParams", localParams);
+    } else {
+      storage.setItem("searchParams", {
+        includeShorts: e.target.checked,
+        querySearch: "",
+      });
+    }
   }
 
   function handleSubmit(e) {
@@ -43,10 +54,6 @@ function SearchForm({
       onSearch({ searchQuery, includeShorts });
     }
   }, []);
-
-  useEffect(() => {
-    handleSubmit();
-  }, [includeShorts]);
 
   return (
     <section className="search-form">

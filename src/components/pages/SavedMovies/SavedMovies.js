@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "../../Header/Header";
 import Content from "../../Content/Content";
@@ -6,13 +6,17 @@ import Footer from "../../Footer/Footer";
 import SearchForm from "../../common/SearchForm/SearchForm";
 import MoviesCardList from "../../common/MoviesCardList/MoviesCardList";
 
-import { filterFilms } from "../../../utils/helper";
+import { filterFilms, storage } from "../../../utils/helper";
 import "./SavedMovies.css";
 
 function SavedMovies({ loggedIn, savedFilms, onRemoveFilm, onShowMsg }) {
   const [isLoading, setIsLoading] = useState(false);
   const [resultFilms, setResultFilms] = useState(savedFilms);
+  const [outputFilms, setOutputFilms] = useState([]);
   const [noResult, setNoResult] = useState(false);
+  const [includeShorts, setIncludeShorts] = useState(
+    storage.getItem("searchParams").includeShorts || false
+  );
 
   const handleSearchMovies = (params) => {
     setIsLoading(true);
@@ -29,6 +33,14 @@ function SavedMovies({ loggedIn, savedFilms, onRemoveFilm, onShowMsg }) {
     }, 500);
   };
 
+  useEffect(() => {
+    if (includeShorts) {
+      setOutputFilms(resultFilms.filter((item) => item.duration <= 40));
+    } else {
+      setOutputFilms(resultFilms.filter((item) => item.duration > 40));
+    }
+  }, [includeShorts, resultFilms]);
+
   return (
     <>
       <Header
@@ -39,12 +51,14 @@ function SavedMovies({ loggedIn, savedFilms, onRemoveFilm, onShowMsg }) {
       <Content>
         <SearchForm
           isSavedMoviesPage={true}
+          includeShorts={includeShorts}
+          setIncludeShorts={setIncludeShorts}
           onSearch={handleSearchMovies}
           onShowMsg={onShowMsg}
         />
         <MoviesCardList
           isUserMovies={true}
-          films={resultFilms}
+          films={outputFilms}
           savedFilms={savedFilms}
           isLoading={isLoading}
           isNoResult={noResult}

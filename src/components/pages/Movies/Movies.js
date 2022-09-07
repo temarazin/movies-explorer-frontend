@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "../../Header/Header";
 import Content from "../../Content/Content";
@@ -22,7 +22,11 @@ function Movies({
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [resultFilms, setResultFilms] = useState([]);
+  const [outputFilms, setOutputFilms] = useState([]);
   const [noResult, setNoResult] = useState(false);
+  const [includeShorts, setIncludeShorts] = useState(
+    storage.getItem("searchParams").includeShorts || false
+  );
 
   const handleSearchMovies = async (params) => {
     setIsLoading(true);
@@ -51,6 +55,14 @@ function Movies({
     }, 1000);
   };
 
+  useEffect(() => {
+    if (includeShorts) {
+      setOutputFilms(resultFilms.filter((item) => item.duration <= 40));
+    } else {
+      setOutputFilms(resultFilms.filter((item) => item.duration > 40));
+    }
+  }, [includeShorts, resultFilms]);
+
   return (
     <>
       <Header
@@ -62,10 +74,12 @@ function Movies({
         <SearchForm
           onSearch={handleSearchMovies}
           onShowMsg={onShowMsg}
+          includeShorts={includeShorts}
+          setIncludeShorts={setIncludeShorts}
           restoreSearch={true}
         />
         <MoviesCardList
-          films={resultFilms}
+          films={outputFilms}
           savedFilms={savedFilms}
           isLoading={isLoading}
           isNoResult={noResult}

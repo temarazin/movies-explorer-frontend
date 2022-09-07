@@ -38,14 +38,11 @@ const formatDuration = (duration) => {
 
 const filterFilms = (item, params) => {
   let result = false;
-  const { includeShorts, searchQuery } = params;
+  const { searchQuery } = params;
   result =
     result || item.nameRU.toLowerCase().includes(searchQuery.toLowerCase());
   result =
     result || item.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
-  if (includeShorts) {
-    result = result && item.duration <= 40;
-  }
   return result;
 };
 
