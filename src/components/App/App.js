@@ -44,6 +44,7 @@ function App() {
       })
       .catch((e) => {
         console.log(e);
+        setLoggedIn(false);
         setCurrentUser({});
       });
   }, []);
@@ -107,6 +108,9 @@ function App() {
 
   const showMsg = (item) => {
     item.key = Date.now();
+    if (!item.text || typeof item.text !== 'string') {
+      item.text = 'Неизвестная ошибка';
+    }
     setMsgList([...msgList, item]);
   };
 

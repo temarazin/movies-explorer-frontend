@@ -19,11 +19,15 @@ function MoviesCardList({
   const { width: windowWidth } = useWindowDimensions();
   const [filmsPerLoad, setFilmsPerLoad] = useState(0);
   const [filmsCount, setFilmsCount] = useState(0);
+  const [filmMinItems, setFilmMinItems] = useState(16);
 
   useEffect(() => {
     if (filmsPerLoad !== 0) {
       setFilmsCount(
-        Math.floor(filmsCount / filmsPerLoad) * filmsPerLoad + filmsPerLoad
+        Math.max(
+          Math.floor(filmsCount / filmsPerLoad) * filmsPerLoad + filmsPerLoad,
+          filmMinItems
+        )
       );
     }
   }, [filmsPerLoad]);
@@ -31,12 +35,16 @@ function MoviesCardList({
   useEffect(() => {
     if (windowWidth > 960) {
       setFilmsPerLoad(4);
+      setFilmMinItems(16)
     } else if (windowWidth > 768) {
       setFilmsPerLoad(3);
+      setFilmMinItems(12)
     } else if (windowWidth > 480) {
       setFilmsPerLoad(2);
+      setFilmMinItems(8)
     } else {
       setFilmsPerLoad(5);
+      setFilmMinItems(5)
     }
   }, [windowWidth]);
 

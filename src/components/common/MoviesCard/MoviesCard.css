@@ -58,3 +58,11 @@
 .movies-card__remove:hover {
   opacity: 0.6;
 }
+
+.movies-card__trailer-link {
+  transition: 0.3s;
+}
+
+.movies-card__trailer-link:hover {
+  opacity: 0.7;
+}
