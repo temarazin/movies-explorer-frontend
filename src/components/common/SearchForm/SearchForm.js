@@ -24,7 +24,13 @@ function SearchForm({
 
   function handleIncludeShortsChange(e) {
     setIncludeShorts(e.target.checked);
-    storage.setItem("searchParams", {includeShorts: e.target.checked, searchQuery});
+    let localSets = storage.getItem("searchParams");
+    if (localSets) {
+      localSets.includeShorts = e.target.checked;
+    } else {
+      localSets = {includeShorts: e.target.checked, searchQuery: ''}
+    }
+    storage.setItem("searchParams", localSets);
   }
 
   function handleSubmit(e) {
@@ -42,7 +48,6 @@ function SearchForm({
         storage.getItem("searchParams");
       setSearchQuery(searchQuery);
       setIncludeShorts(includeShorts);
-      onSearch({ searchQuery, includeShorts });
     }
   }, []);
 

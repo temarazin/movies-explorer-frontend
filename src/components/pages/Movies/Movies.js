@@ -21,7 +21,7 @@ function Movies({
   setSearchParams,
 }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [resultFilms, setResultFilms] = useState([]);
+  const [resultFilms, setResultFilms] = useState(storage.getItem("searchResult") || []);
   const [outputFilms, setOutputFilms] = useState([]);
   const [noResult, setNoResult] = useState(false);
   const [includeShorts, setIncludeShorts] = useState(
@@ -32,7 +32,6 @@ function Movies({
     setIsLoading(true);
 
     let curFilmsDb;
-
     if (!films.length > 0) {
       const getFilms = await moviesApi.getMovies();
       const formattedFilms = getFilms.map(formatMovieData);
@@ -49,6 +48,7 @@ function Movies({
 
     setResultFilms(result);
     setNoResult(result.length === 0);
+    storage.setItem("searchResult", result);
     setSearchParams(params);
     setTimeout(() => {
       setIsLoading(false);

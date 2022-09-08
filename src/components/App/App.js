@@ -33,7 +33,7 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
         setLoggedIn(true);
-        navigate(location.pathname);
+        navigate(location.pathname, { replace: true });
         return mainApi.getMovies();
       })
       .then((data) => {
@@ -58,7 +58,7 @@ function App() {
       })
       .then((user) => {
         setCurrentUser(user);
-        navigate("/movies");
+        navigate("/movies", { replace: true });
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
@@ -70,7 +70,7 @@ function App() {
       .signUp({ name, email, password })
       .then(() => {
         showMsg({ text: "Вы успешно зарегистрировались", type: "success" });
-        handleSignIn({email, password});
+        handleSignIn({ email, password });
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
@@ -85,7 +85,7 @@ function App() {
         setLoggedIn(false);
         setCurrentUser({});
         storage.clear();
-        navigate("/");
+        navigate("/", { replace: true });
       })
       .catch((e) => {
         showMsg({ text: e, type: "error" });
