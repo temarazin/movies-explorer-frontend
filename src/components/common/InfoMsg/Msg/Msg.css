@@ -1,0 +1,41 @@
+@keyframes msg {
+  0% {
+    opacity: 0;
+    right: -100%;
+  }
+  10% {
+    opacity: 1;
+    right: 0;
+  }
+  90% {
+    opacity: 1;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    right: -100%;
+    display: none;
+  }
+}
+
+.msg {
+  position: relative;
+  padding: 16px 8px;
+  background: rgba(255,255,255,0.9);
+  font-family: 'Inter', sans-serif;
+  border-left: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0 3px 3px 0;
+  font-size: 12px;
+  cursor: pointer;
+  animation: msg 4.5s forwards;
+}
+
+.msg_type_success {
+  background: rgb(17 167 6 / 90%);
+  color: var(--color-text-white);
+}
+
+.msg_type_error {
+  background: rgb(255 71 71 / 90%);
+  color: var(--color-text-white);
+}

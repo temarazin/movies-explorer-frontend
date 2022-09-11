@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 import Logo from "../../../common/Logo/Logo";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 
 import "./Login.css";
 
-function Login({ form }) {
+function Login({ form, loggedIn, ...props }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/", { replace: true });
+    }
+  }, [loggedIn]);
+
   let Component;
 
   switch (form) {
@@ -22,7 +32,7 @@ function Login({ form }) {
     <section className="login">
       <Logo className="logo login__logo" />
       <h1 className="login__header">Добро пожаловать!</h1>
-      <Component />
+      <Component {...props} />
     </section>
   );
 }

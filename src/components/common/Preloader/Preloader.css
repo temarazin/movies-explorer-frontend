@@ -56,7 +56,7 @@
   height: 6px;
   border-radius: 50%;
   background: radial-gradient(#000, #202020);
-  animation: preloader-shadow 0.5s ease-out alternate infinite;
+  animation: preloader-shadow 0.25s ease-out alternate infinite;
 }
 
 .preloader__round {
@@ -68,5 +68,5 @@
   left: 40px;
   background: radial-gradient(#fff, #ddd);;
   border-radius: 50%;
-  animation: preloader 0.5s ease-out alternate infinite;
+  animation: preloader 0.25s ease-out alternate infinite;
 }
